@@ -44,7 +44,7 @@ input{
     }
     hr{
         margin: 10px;
-        border: solid black;
+        border: solid black 1px;
         border-radius: 10px;
     }
 
