@@ -1,0 +1,39 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    text-align: center; 
+    width: 70%;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 10%;
+    background-color: #a9d1cd;
+    
+}
+#sandglass{
+    width: 100px; /* Ajusta el tamaño de la imagen según tus necesidades */
+    animation: spin 2s linear infinite;
+}
+.clock-container, .text-container{
+    margin: 20px;
+}
+h3{
+    font-size:larger;
+}
+
+  
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(180deg);
+    }
+  }
+
+  @media (min-width: 850px) {
+    .container{
+        width: 50%;
+    }
+  }
+  
