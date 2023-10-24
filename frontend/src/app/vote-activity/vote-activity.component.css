@@ -1,0 +1,40 @@
+.container{
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.activity-container{
+    max-width: 100%;
+    max-height: 300px;
+}
+.activity-image{
+    max-width: 100%;
+    max-height: 300px;
+}
+.votation-container{
+    display: flex;
+    flex-direction: column;
+}
+.like-btn{
+    background-color: green;
+    min-height: 100px;
+}
+.neutral-btn{
+    background-color: grey;
+    min-height: 100px;
+}
+.dislike-btn{
+    background-color: red;
+    min-height: 100px;
+}
+.buttons{
+    margin: 6px 0;
+    border: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+}
+
+@media (min-width: 850px){
+    .votation-container{
+        flex-direction: row;
+    }
+}

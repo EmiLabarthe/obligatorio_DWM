@@ -11,6 +11,7 @@ import { ShowProposalComponent } from './show-proposal/show-proposal.component';
 import { RankingProposalComponent } from './ranking-proposal/ranking-proposal.component';
 import { SelectGuestNicknameComponent } from './select-guest-nickname/select-guest-nickname.component';
 import { GuestWaitComponent } from './guest-wait/guest-wait.component';
+import { VoteActivityComponent } from './vote-activity/vote-activity.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { GuestWaitComponent } from './guest-wait/guest-wait.component';
     ShowProposalComponent,
     RankingProposalComponent,
     SelectGuestNicknameComponent,
-    GuestWaitComponent
+    GuestWaitComponent,
+    VoteActivityComponent
   ],
   imports: [
     BrowserModule,
