@@ -6,6 +6,7 @@ const proposalSchema = mongoose.Schema({
         required: true
     },
     activities:{
-        
+
     }
-})
+});
+module.exports = mongoose.model('Proposal', proposalSchema);
