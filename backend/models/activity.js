@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 
-const activitySchema = mongoose.Schema({
+const activitySchema = new mongoose.Schema({
     image: {
-        type: Image,
-        required: true
+        type: String, 
+        required: false
     },
     text: {
         type: String,

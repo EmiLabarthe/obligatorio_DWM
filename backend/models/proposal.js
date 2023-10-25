@@ -1,12 +1,14 @@
 const mongoose = require('mongoose');
 
-const proposalSchema = mongoose.Schema({
-    title: {
-        typeof: String,
+const proposalSchema = new mongoose.Schema({
+    id: {
+        type: String,
         required: true
     },
-    activities:{
-
+    title: {
+        type: String,
+        required: true
     }
 });
+
 module.exports = mongoose.model('Proposal', proposalSchema);
