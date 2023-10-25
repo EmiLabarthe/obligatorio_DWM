@@ -9,8 +9,8 @@ const PORT = 3000;
 
 //middleware
 app.use(express.json());
-app.use('/api/proposals', proposalRoute);
-app.use('/api/activities', activityRoute);
+app.use('/api/', proposalRoute);
+app.use('/api/', activityRoute);
 
 
 

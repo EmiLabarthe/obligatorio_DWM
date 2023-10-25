@@ -14,6 +14,7 @@ router.post('/activity', (req, res) => {
 })
 //get all activities
 router.get('/activities', (req, res) => {
+    res.send('¡Hola, Activity!');
     activitySchema
         .find()
         .then((data) => res.json(data))
