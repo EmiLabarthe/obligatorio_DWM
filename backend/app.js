@@ -17,14 +17,14 @@ app.use('/api/', activityRoute);
 app.get('/', (req, res) => {
   res.send('¡Hola, mundo!');
 });
-/*
+
 mongoose.connect(
   //clave del mongodb
-  process.env.PORT
+  process.env.MONGODB_URI
 ).then(()=>{
   console.log('Conectado A Mongo')
 }).catch((error)=> console.error(error));
-*/
+
 app.listen(PORT, () => {
   console.log(`Servidor Express iniciado en el puerto ${PORT}`);
 });
