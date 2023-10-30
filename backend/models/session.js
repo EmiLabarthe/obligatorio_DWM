@@ -6,8 +6,8 @@ const sessionSchema = new mongoose.Schema({
         required: true
     },
     proposalTemplateId:{
-        type: String
-        
+        type: String,
+        required:true
     }
 });
 
