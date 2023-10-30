@@ -3,6 +3,8 @@ const activitySchema = require('../models/activity');
 const router = express.Router();
 
 
+
+
 //create a activity
 router.post('/activity', (req, res) => {
     const activity = activitySchema(req.body);
