@@ -16,7 +16,7 @@ const router = express.Router();
 //get all activities
 router.get('/session', (req, res) => {
     
-    activitySchema
+    sessionSchema
         .find()
         .then((data) => res.json(data))
         .catch((error)=> res.json({message:error}))
