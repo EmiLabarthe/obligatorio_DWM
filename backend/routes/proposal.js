@@ -13,8 +13,6 @@ router.post('/proposal', (req, res) => {
 })
 //get all proposals
 router.get('/proposals', (req, res) => {
-    res.send('¡Hola, Prop!');
-    
     proposalSchema
         .find()
         .then((data) => res.json(data))
