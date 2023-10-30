@@ -21,7 +21,7 @@ const httpServer = http.createServer(app);
 const io = require('socket.io')(httpServer, {
   cors: {origin: '*'}
 });
-
+app.use(cors({ origin: 'http://localhost:3000' }));
 let counter = 0;
 
 app.get('/', (req, res) => {
