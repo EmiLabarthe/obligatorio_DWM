@@ -8,7 +8,7 @@ const proposalSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true
-    }
+        }
 });
 
 module.exports = mongoose.model('Proposal', proposalSchema);
