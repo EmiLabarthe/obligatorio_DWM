@@ -14,9 +14,9 @@ const router = express.Router();
 })
 */
 //get all activities
-router.get('/activities', (req, res) => {
-    res.send('¡Hola, Activity!');
-    activitySchema
+router.get('/session', (req, res) => {
+    
+    sessionSchema
         .find()
         .then((data) => res.json(data))
         .catch((error)=> res.json({message:error}))
