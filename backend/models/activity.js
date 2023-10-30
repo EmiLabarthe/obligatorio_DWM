@@ -8,6 +8,10 @@ const activitySchema = new mongoose.Schema({
     text: {
         type: String,
         required: false
+    },
+    id:{
+        type: String,
+        required: true
     }
 });
 
