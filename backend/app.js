@@ -1,5 +1,4 @@
 const express = require('express');
-const cors = require('cors');
 const mongoose = require('mongoose');
 const cors = require('cors'); // Importa el paquete cors
 const proposalRoute = require('./routes/proposal');
