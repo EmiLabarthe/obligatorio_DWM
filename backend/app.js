@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const cors = require('cors'); // Importa el paquete cors
 const proposalRoute = require('./routes/proposal');
 const activityRoute = require('./routes/activity');
 const http = require('http');
@@ -21,7 +22,7 @@ const httpServer = http.createServer(app);
 const io = require('socket.io')(httpServer, {
   cors: {origin: '*'}
 });
-
+app.use(cors({ origin: 'http://localhost:3000' }));
 let counter = 0;
 
 app.get('/', (req, res) => {
