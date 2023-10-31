@@ -11,7 +11,7 @@ const app = express();
 const PORT = 3000;
 
 // Middleware
-app.use(cors()); // Usa el middleware cors para permitir todas las solicitudes
+app.use(cors({ origin: 'http://localhost:4200' }));
 app.use(express.json());
 app.use('/api/', proposalRoute);
 app.use('/api/', activityRoute);

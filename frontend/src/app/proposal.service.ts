@@ -9,7 +9,7 @@ import { of } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class ProposalServiceService {
+export class ProposalService {
 
   constructor(private http: HttpClient) { }
   private proposalUrl = 'http://localhost:3000/api/proposals';
@@ -22,15 +22,17 @@ export class ProposalServiceService {
         catchError(this.handleError<Proposal[]>('getProposals', []))
       );
   }
+
   getProposal(id: number): Observable<Proposal> {
     const url = `${this.proposalUrl}/${id}`;
-    return this.http.get<Proposal[]>(url).pipe(
+    return this.http.get<Proposal>(url).pipe(
       tap(_ => console.log(`fetched proposal id=${id}`)),
       catchError(this.handleError<Proposal>(`getProposal id=${id}`))
     )
   }
+  
   addProposal(proposal: Proposal): Observable<Proposal> {
-    return this.http.post<Proposal>(this.proposalUrl,proposal, this.httpOptions).pipe(
+    return this.http.post<Proposal>(this.proposalUrl, proposal, this.httpOptions).pipe(
       tap((newProposal: Proposal) => console.log(`added proposal w/ id=${newProposal}`)),
       catchError(this.handleError<Proposal>('addProposal'))
     );
