@@ -8,16 +8,20 @@ import { Activity } from '../activity';
 })
 export class CreateProposalComponent {
 constructor(private activityService: ActivityServiceService) {}
-selectedActivity?: Activity;
+selectedActivities?: Activity[];
 
 activities: Activity[] = [];
 
 ngOnInit(): void {
-   this.activityService.getActivities().subscribe(activity => {
-    this.activities = activity
-  });
+  this.activityService.getActivities().subscribe(activities => {
+    this.activities = activities;
+    this.selectedActivities = []; 
+ });
 }
+
 onSelect(activity:Activity){
-  this.selectedActivity = activity;
+  this.selectedActivities?.push(activity);
+  console.log(this.selectedActivities);
+  
 }
 }

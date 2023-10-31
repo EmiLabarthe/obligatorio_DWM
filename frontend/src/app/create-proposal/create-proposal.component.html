@@ -1,4 +1,13 @@
-<h1>Galeria de Actividades</h1>
-<div *ngFor="let activity of activities">
-    <!--<h2>{{activity.text}}</h2>-->
+<div class="container">
+    <h1>Galeria de Actividades</h1>
+    <div class="row">
+        <div  clas (click)="onSelect(activity)"   *ngFor="let activity of activities" class="col-sm-1 col-md-3 col-md-6 col-lg-3">
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" [src]="activity.imgPath" alt="activity image">
+                <div class="card-body">
+                    <h5 class="card-title">{{activity.title}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
