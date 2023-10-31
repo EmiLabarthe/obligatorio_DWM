@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 
 const activitySchema = new mongoose.Schema({
-    image: {
+    title: {
+        type: String,
+        required: true
+    },
+    imgPath: {
         type: String, 
         required: false
     },
-    text: {
-        type: String,
-        required: false
-    },
     id:{
-        type: String,
+        type: Number,
         required: true
     }
 });

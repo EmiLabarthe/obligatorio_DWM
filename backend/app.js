@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const proposalRoute = require('./routes/proposal');
 const activityRoute = require('./routes/activity');
@@ -10,6 +11,7 @@ const app = express();
 const PORT = 3000;
 
 // Middleware
+app.use(cors({ origin: 'http://localhost:4200' }));
 app.use(express.json());
 app.use('/api/', proposalRoute);
 app.use('/api/', activityRoute);
