@@ -22,13 +22,6 @@ router.get('/activities', (req, res) => {
         .then((data) => res.json(data))
         .catch((error)=> res.json({message:error}))
 });
-router.get('/activity/byId/:id', (req, res) => {
-    const {id} = req.params;
-    activitySchema
-        .findById(id)
-        .then((data) => res.json(data))
-        .catch((error)=> res.json({message:error}))
-});
 
 
-module.exports = router; 
+module.exports = router;
