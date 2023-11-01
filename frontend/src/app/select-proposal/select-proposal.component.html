@@ -7,18 +7,16 @@
             <span>New proposal</span>
         </div>
         <div class="select-container">
-            <li>drugs</li>
-            <li>drugs</li>
-            <li>drugs</li>
-            <li>drugs</li>
-            <li>drugs</li>
-            <li>drugs</li>
-            <div *ngFor = "let proposal of proposals">
-                <div>
-                    {{proposal.title}}
-                </div>
-                {{proposal.title}}
-            </div>
+            <ul>
+                <li *ngFor = "let proposal of proposals">
+                    <div class="proposal-title">
+                        <b>{{proposal.title}}</b>
+                    </div>
+                    <div class="proposal-activities">
+                        <span *ngFor = "let activity of proposal.activities">{{activity.title}}</span>    
+                    </div>
+                </li>
+            </ul>
         </div>
     </div>
 </div>

@@ -15,6 +15,8 @@ router.post('/proposal', (req, res) => {
 router.get('/proposals', (req, res) => {
     proposalSchema
         .find()
+        .populate('activities') // Utiliza populate para cargar las actividades relacionadas
+        .exec()
         .then((data) => res.json(data))
         .catch((error)=> res.json({message:error}))
 });
