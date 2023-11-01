@@ -13,7 +13,12 @@
             <li>drugs</li>
             <li>drugs</li>
             <li>drugs</li>
-            <li *ngFor = "let proposal of proposals">{{proposal.title}}</li>
+            <div *ngFor = "let proposal of proposals">
+                <div>
+                    {{proposal.title}}
+                </div>
+                {{proposal.title}}
+            </div>
         </div>
     </div>
 </div>
