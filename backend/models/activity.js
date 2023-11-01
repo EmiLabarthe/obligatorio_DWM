@@ -10,7 +10,7 @@ const activitySchema = new mongoose.Schema({
         required: false
     },
     id:{
-        type: Number,
+       type: Number,
         required: true
     }
 });

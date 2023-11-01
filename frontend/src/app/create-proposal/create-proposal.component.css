@@ -1,3 +1,42 @@
+/* Estilos para la galería de actividades */
+.container {
+  padding: 20px;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 36px;
+}
+
+.row {
+  justify-content: center;
+}
+
+.card {
+  margin: 10px;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-img-top {
+  height: 200px;
+  object-fit: cover;
+}
+
+.card-title {
+  font-size: 18px;
+}
+
 .selected-card {
-    background-color: lightblue; 
-  }
+  background-color: lightblue;
+  border: 2px solid blue;
+}
+
+.unselected-card {
+  background-color: white;
+  border: 1px solid #ccc;
+}
