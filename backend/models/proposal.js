@@ -7,10 +7,7 @@ const proposalSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    id: {
-        type: String,
-        required: true
-    },
+   
     activities: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Activity' }]
 });
 
