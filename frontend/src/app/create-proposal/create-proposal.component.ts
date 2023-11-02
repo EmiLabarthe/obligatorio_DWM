@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ActivityServiceService } from '../activity-service.service';
+import { Proposal } from '../proposal';
 import { Activity } from '../activity';
+import { ProposalService } from '../proposal.service';
 
 @Component({
   selector: 'app-create-proposal',
@@ -8,9 +10,10 @@ import { Activity } from '../activity';
   styleUrls: ['./create-proposal.component.css']
 })
 export class CreateProposalComponent {
-  constructor(private activityService: ActivityServiceService) { }
+  constructor(private activityService: ActivityServiceService, private proposalService: ProposalService) { }
   selectedActivities: Activity[] = [];
   activities: Activity[] = [];
+  title:string=" ";
 
   ngOnInit(): void {
     this.activityService.getActivities().subscribe(activities => {
@@ -31,5 +34,14 @@ export class CreateProposalComponent {
 
   isSelected(activity: Activity): boolean {
     return this.selectedActivities.includes(activity);
+  }
+  sendProposal() {
+    const newProposal: Proposal = {
+      activities: this.selectedActivities,
+      title: this.title,
+      id: 0
+    };
+    this.proposalService.addProposal(newProposal);
+    console.log(newProposal);
   }
 }

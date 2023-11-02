@@ -13,6 +13,7 @@ export class ProposalService {
 
   constructor(private http: HttpClient) { }
   private proposalUrl = 'http://localhost:3000/api/proposals';
+  private addProposalUrl = 'http://localhost:3000/api/proposal';
 
 
   getProposals(): Observable<Proposal[]> {
@@ -32,8 +33,8 @@ export class ProposalService {
   }
   
   addProposal(proposal: Proposal): Observable<Proposal> {
-    return this.http.post<Proposal>(this.proposalUrl, proposal, this.httpOptions).pipe(
-      tap((newProposal: Proposal) => console.log(`added proposal w/ id=${newProposal}`)),
+    return this.http.post<Proposal>(this.addProposalUrl, proposal, this.httpOptions).pipe(
+      tap((proposal: Proposal) => console.log(`added proposal w/ id=${proposal.id}`)),
       catchError(this.handleError<Proposal>('addProposal'))
     );
   }

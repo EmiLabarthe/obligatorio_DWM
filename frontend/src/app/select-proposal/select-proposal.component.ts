@@ -13,7 +13,7 @@ export class SelectProposalComponent {
   constructor(private proposalService : ProposalService){}
 
   proposals ?: Proposal[];
-
+  
   ngOnInit(){
     this.proposalService.getProposals().subscribe((data: Proposal[]) => {
       this.proposals = data;
