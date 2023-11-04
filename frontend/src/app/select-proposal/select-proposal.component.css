@@ -1,5 +1,5 @@
 .page{
-    background-color: #CCF0FF;
+    background-color: #a9d1cd;
     border-radius: 10px;
     padding-bottom: 30px;
     margin: 10px;
@@ -39,6 +39,7 @@ li:hover{
     display: flex;
     flex-direction: column;
     align-items: center;
+    
 }
 .create-container{
     width: 100%;
@@ -50,7 +51,7 @@ li:hover{
     flex-direction: column;
     
 }
-button{
+.create-button{
     height: 100px;
     width: 100px;
     border-radius: 10px;
@@ -67,6 +68,48 @@ button{
     width: 95%;
     background-color: white;
 }
+.show-proposal{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #5DA4C4;
+    border-radius: 10px;
+    margin: 10px;
+    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
+}
+.activities-container{
+    border: solid black 1px;
+    border-radius: 10px;
+    overflow-y: auto;
+    height: 400px;
+    background-color: white;
+    width: 90%;
+    display: flex;
+}
+.activity-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+}
+.activity-title{
+    width: 100%;
+    border: solid rgb(52, 52, 52) 1px;
+    border-radius: 5px;
+    border-top: none;
+    text-align: center;
+}
+.buttons-container{
+    width: 90%;
+    margin: 10px;
+    text-align: end;
+}
+.showing-button{
+    margin: 5px;
+}
+
+
 @media (min-width: 850px){
     .content{
         flex-direction: row;
@@ -79,4 +122,5 @@ button{
         height: 600px;
         margin-right: 15px;
     }
+  
 }
