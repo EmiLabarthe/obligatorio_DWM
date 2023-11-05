@@ -3,18 +3,17 @@ import { ActivityServiceService } from '../activity-service.service';
 import { Proposal } from '../proposal';
 import { Activity } from '../activity';
 import { ProposalService } from '../proposal.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-proposal',
   templateUrl: './create-proposal.component.html',
   styleUrls: ['./create-proposal.component.css']
 })
 export class CreateProposalComponent {
-  constructor(private activityService: ActivityServiceService, private proposalService: ProposalService) { }
+  constructor(private activityService: ActivityServiceService, private proposalService: ProposalService, private router: Router) { }
   selectedActivities: Activity[] = [];
   activities: Activity[] = [];
   title:string=" ";
-
   ngOnInit(): void {
     this.activityService.getActivities().subscribe(activities => {
       this.activities = activities;
@@ -43,5 +42,8 @@ export class CreateProposalComponent {
     };
     this.proposalService.addProposal(newProposal);
     console.log(newProposal);
+    this.router.navigate(['/select-proposal']);
   }
+
+  
 }
