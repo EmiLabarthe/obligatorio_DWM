@@ -36,14 +36,24 @@ export class CreateProposalComponent {
   }
   sendProposal() {
     const newProposal: Proposal = {
-      activities: this.selectedActivities,
-      title: this.title,
-      id: 0
+        activities: this.selectedActivities,
+        title: this.title,
+        id: "0"
     };
-    this.proposalService.addProposal(newProposal);
-    console.log(newProposal);
-    this.router.navigate(['/select-proposal']);
-  }
+
+    this.proposalService.addProposal(newProposal).subscribe(
+        (response) => {
+            console.log('Proposal successfully sent:', response);
+            this.router.navigate(['/select-proposal']);
+        },
+        (error) => {
+            console.log('Error sending proposal:', error);
+            // Handle the error (show a message to the user, etc.)
+        }
+    );
+}
+
+
 
   
 }

@@ -31,17 +31,19 @@ export class ProposalService {
       catchError(this.handleError<Proposal>(`getProposal id=${id}`))
     )
   }
-  
+
   addProposal(proposal: Proposal): Observable<Proposal> {
+    console.log('Propuesta a enviar:', proposal); // Verifica el objeto proposal antes de enviarlo
     return this.http.post<Proposal>(this.addProposalUrl, proposal, this.httpOptions).pipe(
-      tap((proposal: Proposal) => console.log(`added proposal w/ id=${proposal.id}`)),
+      tap((proposal: Proposal) => console.log(`Propuesta añadida con éxito, ID: ${proposal.id}`)),
       catchError(this.handleError<Proposal>('addProposal'))
     );
   }
 
+
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };    
+  };
 
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
