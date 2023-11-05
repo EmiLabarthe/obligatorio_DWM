@@ -1,27 +1,30 @@
 const express = require('express');
 const mongoose = require('mongoose');
-const cors = require('cors'); // Importa el paquete cors
+const cors = require('cors');
 const proposalRoute = require('./routes/proposal');
 const activityRoute = require('./routes/activity');
 const http = require('http');
-
 require("dotenv").config();
 
 const app = express();
 const PORT = 3000;
 
-// Middleware
+// Middleware para manejar las solicitudes CORS
 app.use(cors({ origin: 'http://localhost:4200' }));
+
+// Middleware para parsear JSON y otras solicitudes entrantes
 app.use(express.json());
+
+// Rutas de la API
 app.use('/api/', proposalRoute);
 app.use('/api/', activityRoute);
 
 // Crear servidor HTTP
 const httpServer = http.createServer(app);
 const io = require('socket.io')(httpServer, {
-  cors: {origin: '*'}
+  cors: { origin: '*' }
 });
-app.use(cors({ origin: 'http://localhost:3000' }));
+
 let counter = 0;
 
 app.get('/', (req, res) => {
@@ -46,13 +49,13 @@ io.on('connection', (socket) => {
   }, 5000);
 });
 
-mongoose.connect(
-  process.env.MONGODB_URI, 
-  { useNewUrlParser: true, useUnifiedTopology: true }
-).then(() => {
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => {
   console.log('Conectado A Mongo');
 }).catch((error) => console.error(error));
 
-httpServer.listen(3000, () => {
-  console.log(`Servidor HTTP iniciado en el puerto 3000`);
+httpServer.listen(PORT, () => {
+  console.log(`Servidor HTTP iniciado en el puerto ${PORT}`);
 });

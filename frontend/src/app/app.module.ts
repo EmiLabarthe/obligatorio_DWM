@@ -12,6 +12,8 @@ import { RankingProposalComponent } from './ranking-proposal/ranking-proposal.co
 import { SelectGuestNicknameComponent } from './select-guest-nickname/select-guest-nickname.component';
 import { GuestWaitComponent } from './guest-wait/guest-wait.component';
 import { VoteActivityComponent } from './vote-activity/vote-activity.component';
+import { FormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { VoteActivityComponent } from './vote-activity/vote-activity.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,17 +1,19 @@
 import { Component } from '@angular/core';
 import { ActivityServiceService } from '../activity-service.service';
+import { Proposal } from '../proposal';
 import { Activity } from '../activity';
-
+import { ProposalService } from '../proposal.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-create-proposal',
   templateUrl: './create-proposal.component.html',
   styleUrls: ['./create-proposal.component.css']
 })
 export class CreateProposalComponent {
-  constructor(private activityService: ActivityServiceService) { }
+  constructor(private activityService: ActivityServiceService, private proposalService: ProposalService, private router: Router) { }
   selectedActivities: Activity[] = [];
   activities: Activity[] = [];
-
+  title:string=" ";
   ngOnInit(): void {
     this.activityService.getActivities().subscribe(activities => {
       this.activities = activities;
@@ -32,4 +34,26 @@ export class CreateProposalComponent {
   isSelected(activity: Activity): boolean {
     return this.selectedActivities.includes(activity);
   }
+  sendProposal() {
+    const newProposal: Proposal = {
+        activities: this.selectedActivities,
+        title: this.title,
+        id: "0"
+    };
+
+    this.proposalService.addProposal(newProposal).subscribe(
+        (response) => {
+            console.log('Proposal successfully sent:', response);
+            this.router.navigate(['/select-proposal']);
+        },
+        (error) => {
+            console.log('Error sending proposal:', error);
+            // Handle the error (show a message to the user, etc.)
+        }
+    );
+}
+
+
+
+  
 }
