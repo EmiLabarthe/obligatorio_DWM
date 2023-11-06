@@ -108,6 +108,9 @@ li:hover{
 .showing-button{
     margin: 5px;
 }
+.activity-img{
+    max-width: 100px;
+}
 
 
 @media (min-width: 850px){
