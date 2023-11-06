@@ -8,19 +8,19 @@ import { Activity } from './activity';
 })
 export class SocketService {
 
-  public message$: BehaviorSubject<string> = new BehaviorSubject('');
+  public message$: BehaviorSubject<Activity> = new BehaviorSubject({title:'a', imgPath:''});
   constructor() {} 
 
   socket = io('http://localhost:3000');
 
-  public sendMessage(message: any) {
+  public sendMessage(message: Activity) {
     this.socket.emit('message', message);
   }
 
   public getNewMessage = () => {
-    this.socket.on('message', (message) =>{
-      this.message$.next(message);
-      console.log(message);
+    this.socket.on('sendNewActivity', (activity) =>{
+      this.message$.next(activity);
+      console.log('la actividad', activity);
     });
     
     return this.message$.asObservable();

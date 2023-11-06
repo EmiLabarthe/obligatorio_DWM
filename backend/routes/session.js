@@ -23,6 +23,7 @@ router.get('/session', (req, res) => {
 });
 
 
+
 /*
 startProposal(number proposalId): int sessionId
 getNextActivity(number sessionId, number activityPosition): activity nextActivity
