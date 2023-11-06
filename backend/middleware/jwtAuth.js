@@ -6,7 +6,7 @@ function generateToken(payload) {
 
 function verifyToken(req, res, next) {
   const token = req.header('Authorization');
-
+    console.log("ACAESTOY");
   if (!token) {
     return res.status(401).json({ message: 'Acceso no autorizado' });
   }
