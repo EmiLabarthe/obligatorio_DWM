@@ -52,6 +52,9 @@ export class CreateProposalComponent {
         }
     );
 }
+backToAllProposals(){
+  this.router.navigate(['/select-proposal']);
+}
 
 
 

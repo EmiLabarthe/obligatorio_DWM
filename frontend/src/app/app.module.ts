@@ -13,6 +13,7 @@ import { SelectGuestNicknameComponent } from './select-guest-nickname/select-gue
 import { GuestWaitComponent } from './guest-wait/guest-wait.component';
 import { VoteActivityComponent } from './vote-activity/vote-activity.component';
 import { FormsModule } from '@angular/forms';
+import { LastElementPipe } from './last-element.pipe';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import { FormsModule } from '@angular/forms';
     RankingProposalComponent,
     SelectGuestNicknameComponent,
     GuestWaitComponent,
-    VoteActivityComponent
+    VoteActivityComponent,
+    LastElementPipe
   ],
   imports: [
     BrowserModule,
