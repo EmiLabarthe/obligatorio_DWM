@@ -8,11 +8,8 @@ const activitySchema = new mongoose.Schema({
     imgPath: {
         type: String, 
         required: false
-    },
-    id:{
-       type: Number,
-        required: true
     }
+    
 });
 
 module.exports = mongoose.model('Activity', activitySchema);

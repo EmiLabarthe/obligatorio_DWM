@@ -35,7 +35,7 @@ export class ProposalService {
   addProposal(proposal: Proposal): Observable<Proposal> {
     console.log('Propuesta a enviar:', proposal); // Verifica el objeto proposal antes de enviarlo
     return this.http.post<Proposal>(this.addProposalUrl, proposal, this.httpOptions).pipe(
-      tap((proposal: Proposal) => console.log(`Propuesta añadida con éxito, ID: ${proposal.id}`)),
+      tap((proposal: Proposal) => console.log(`Propuesta añadida con éxito, nombre: ${proposal.title}`)),
       catchError(this.handleError<Proposal>('addProposal'))
     );
   }

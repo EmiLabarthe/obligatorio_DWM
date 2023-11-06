@@ -28,8 +28,8 @@
     </div>
     <div class="activities-container">
         <div *ngFor="let activity of selected.activities" class="activity-container">
-            <div class="activity-img">
-                <img [src]="activity.imgPath">
+            <div class="activity-img-container">
+                <img class="activity-img" [src]="activity.imgPath">
             </div>
             <div class="activity-title">
                 {{activity.title}}
