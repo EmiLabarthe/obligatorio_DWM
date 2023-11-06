@@ -38,7 +38,7 @@ export class CreateProposalComponent {
     const newProposal: Proposal = {
         activities: this.selectedActivities,
         title: this.title,
-        id: "0"
+
     };
 
     this.proposalService.addProposal(newProposal).subscribe(
