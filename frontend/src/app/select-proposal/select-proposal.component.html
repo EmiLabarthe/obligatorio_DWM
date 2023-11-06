@@ -4,8 +4,8 @@
     <div class="title"><b>Select a proposal</b></div>
     <div class="content">
         <div class="create-container">
-            <button class="create-button btn btn-dark" routerLink="/create-proposal">+</button>
-            <span>New proposal</span>
+            <button class="create-button btn btn-light" routerLink="/create-proposal">+</button>
+            <span><b>New proposal</b></span>
         </div>
         <div class="select-container">
             <ul>
@@ -14,7 +14,14 @@
                         <b>{{proposal.title}}</b>
                     </div>
                     <div class="proposal-activities">
-                        <span *ngFor = "let activity of proposal.activities">{{activity.title}}</span>    
+                        <span *ngFor = "let activity of proposal.activities">
+                            <span *ngIf="activity == (proposal.activities | lastElement)">
+                                {{activity.title}}
+                            </span>
+                            <span *ngIf="activity != (proposal.activities | lastElement)">
+                            {{activity.title}}, 
+                            </span>
+                        </span>    
                     </div>
                 </li>
             </ul>
@@ -28,8 +35,8 @@
     </div>
     <div class="activities-container">
         <div *ngFor="let activity of selected.activities" class="activity-container">
-            <div class="activity-img">
-                <img [src]="activity.imgPath">
+            <div class="activity-img-container">
+                <img class="activity-img" [src]="activity.imgPath">
             </div>
             <div class="activity-title">
                 {{activity.title}}

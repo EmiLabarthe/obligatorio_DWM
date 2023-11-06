@@ -38,7 +38,7 @@ export class CreateProposalComponent {
     const newProposal: Proposal = {
         activities: this.selectedActivities,
         title: this.title,
-        id: "0"
+
     };
 
     this.proposalService.addProposal(newProposal).subscribe(
@@ -51,6 +51,9 @@ export class CreateProposalComponent {
             // Handle the error (show a message to the user, etc.)
         }
     );
+}
+backToAllProposals(){
+  this.router.navigate(['/select-proposal']);
 }
 
 
