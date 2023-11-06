@@ -1,22 +1,30 @@
-<div class="container">
-    <div class="header">
-        <h1>Activies Gallery</h1>
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
-            Enviar
-        </button>
-    </div>
-    <div class="row">
-        <div (click)="onSelect(activity)" *ngFor="let activity of activities" class="col-sm-12 col-md-6 col-lg-3">
-            <div class="card gallery" style="width: 18rem;" [ngClass]="{'selected-card': isSelected(activity)}"
-                style="margin: 4px">
-                <img class="card-img-top" [src]="activity.imgPath" alt="activity image">
-                <div class="card-body">
-                    <h5 class="card-title desc">{{activity.title}}</h5>
+<body>
+    <div class="container">
+        <div class="header d-flex justify-content-between align-items-center mb-4">
+            <h1 class="mb-0">Activities Gallery</h1>
+            <div>
+                <button type="button" class="btn btn-primary mr-2" (click)="backToAllProposals()">
+                    Back to all Proposals
+                </button>
+                <button type="button" class="btn btn-primary mr-2" data-toggle="modal" data-target="#myModal">
+                    Create
+                </button>
+
+            </div>
+        </div>
+        <div class="row">
+            <div (click)="onSelect(activity)" *ngFor="let activity of activities" class="col-sm-12 col-md-6 col-lg-3">
+                <div class="card gallery" style="width: 18rem;" [ngClass]="{'selected-card': isSelected(activity)}"
+                    style="margin: 4px">
+                    <img class="card-img-top" [src]="activity.imgPath" alt="activity image">
+                    <div class="card-body">
+                        <h5 class="card-title desc">{{activity.title}}</h5>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</body>
 <div class="modal" id="myModal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -30,7 +38,8 @@
                 <input type="text" max="20" [(ngModel)]="title">
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="sendProposal()">Enviar</button>
+                <button type="button" class="btn btn-primary" data-dismiss="modal"
+                    (click)="sendProposal()">Enviar</button>
             </div>
         </div>
     </div>
