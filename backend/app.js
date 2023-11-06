@@ -43,10 +43,9 @@ io.on('connection', (socket) => {
     console.log('a user disconnected!');
   });
 
-  setInterval(() => {
-    io.emit('message', Math.random());
-    counter++;
-  }, 5000);
+  socket.on('error', (error) => {
+    console.log('WebSocket Error:', error);
+  });
 });
 
 mongoose.connect(process.env.MONGODB_URI, {

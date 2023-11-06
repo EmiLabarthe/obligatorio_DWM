@@ -4,13 +4,15 @@ import { SelectProposalComponent } from './select-proposal/select-proposal.compo
 import { CreateProposalComponent } from './create-proposal/create-proposal.component';
 import { LoginComponent } from './login/login.component';
 import { ShowProposalComponent } from './show-proposal/show-proposal.component';
+import { SessionComponent } from './session/session.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
   { path: 'select-proposal', component: SelectProposalComponent },
   { path: 'create-proposal', component: CreateProposalComponent },
-  { path: 'proposal/:id', component: ShowProposalComponent}
+  { path: 'proposal/:id', component: ShowProposalComponent},
+  { path: 'startedSession', component: SessionComponent}
 ];
 
 @NgModule({
