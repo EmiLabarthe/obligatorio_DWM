@@ -1,9 +1,11 @@
 const express = require('express');
 const proposalSchema = require('../models/proposal');
 const router = express.Router();
+const authUtils=require('../middleware/jwtAuth');
+
 
 //create a proposal
-router.post('/proposal', (req, res) => {
+router.post('/proposal', authUtils.verifyToken ,(req, res) => {
     console.log("llego al endpoint")
     const proposal = proposalSchema(req.body);
     proposal
@@ -12,7 +14,7 @@ router.post('/proposal', (req, res) => {
         .catch((err)=> res.json({message: err}));
 })
 //get all proposals
-router.get('/proposals', (req, res) => {
+router.get('/proposals',authUtils.verifyToken , (req, res) => {
     proposalSchema
         .find()
         .populate('activities') 
@@ -23,7 +25,7 @@ router.get('/proposals', (req, res) => {
 
 // get proposal by ID
 // PASAR ID DE MONGO PORQUE LA HARDCODEADA ROMPE TUTI
-router.get('/proposal/:id', (req, res) => {
+router.get('/proposal/:id',authUtils.verifyToken , (req, res) => {
     const proposalId = req.params.id;
 
     proposalSchema.findById(proposalId)
