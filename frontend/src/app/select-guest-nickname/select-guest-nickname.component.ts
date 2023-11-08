@@ -6,5 +6,8 @@ import { Component } from '@angular/core';
   styleUrls: ['./select-guest-nickname.component.css']
 })
 export class SelectGuestNicknameComponent {
+  enterNickname(nickname: string){
+    localStorage.setItem('nickname', nickname);
+  }
 
 }

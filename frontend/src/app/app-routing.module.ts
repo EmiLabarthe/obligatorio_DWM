@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SelectProposalComponent } from './select-proposal/select-proposal.component';
 import { CreateProposalComponent } from './create-proposal/create-proposal.component';
 import { LoginComponent } from './login/login.component';
+import { SessionComponent } from './session/session.component';
 import { SelectGuestNicknameComponent } from './select-guest-nickname/select-guest-nickname.component';
 import { GuestWaitComponent } from './guest-wait/guest-wait.component';
 import { VoteActivityComponent } from './vote-activity/vote-activity.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   { path: 'vote-activity', component: VoteActivityComponent},
   { path: 'select-proposal', component: SelectProposalComponent },
   { path: 'create-proposal', component: CreateProposalComponent },
+  { path: 'startedSession', component: SessionComponent}
 ];
 
 @NgModule({

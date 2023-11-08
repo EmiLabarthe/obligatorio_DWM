@@ -21,6 +21,9 @@ router.get('/session', (req, res) => {
         .then((data) => res.json(data))
         .catch((error)=> res.json({message:error}))
 });
+
+
+
 /*
 startProposal(number proposalId): int sessionId
 getNextActivity(number sessionId, number activityPosition): activity nextActivity

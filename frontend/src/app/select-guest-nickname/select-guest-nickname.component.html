@@ -1,4 +1,4 @@
 <div class="container">
-    <input type="text" id="nickname" placeholder="Your nickname" required>
-    <button class="btn btn-primary btn-md" id="ingresar" type="submit">Let's choose!</button>
+    <input type="text" #nicknameInput placeholder="Your nickname" required>
+    <button class="btn btn-primary btn-md" id="ingresar" (click)="enterNickname(nicknameInput.value)" type="submit">Let's choose!</button>
 </div>

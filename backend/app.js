@@ -33,22 +33,36 @@ app.get('/', (req, res) => {
   res.send('¡Hola, mundo!');
 });
 
+app.post('/session/start',(req,res)=>{
+  jugarJuego(0)
+  res.send('ok')
+});
+
+function jugarJuego(posicion){
+  const activities = [{title:'Actividad 1', imgPath:''}, {title:'Actividad 2', imgPath:''}, {title:'Actividad 3', imgPath:''}]
+  if(posicion < activities.length)
+  {
+    setTimeout(() => {
+      io.emit('sendNewActivity', activities[posicion]);
+      jugarJuego(posicion+1)
+    }, 3000);
+  }
+  else
+  {
+    io.emit('sendNewActivity',{title:'Terminó el juego', imgPath:''});
+  }
+}
+
 io.on('connection', (socket) => {
   console.log('a user connected');
-
-  socket.on('message', (message) => {
-    console.log(message);
-    io.emit('message', `${socket.id.substr(0, 2)} said ${message}`);
-  });
 
   socket.on('disconnect', () => {
     console.log('a user disconnected!');
   });
 
-  setInterval(() => {
-    io.emit('message', Math.random());
-    counter++;
-  }, 5000);
+  socket.on('error', (error) => {
+    console.log('WebSocket Error:', error);
+  });
 });
 
 mongoose.connect(process.env.MONGODB_URI, {
