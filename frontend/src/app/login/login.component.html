@@ -7,15 +7,18 @@
         <form method="post">
             <div class="input-container">
                 <label for="username">Username:</label>
-                <input type="text" name="username" id="username" placeholder="Your username" required>
+                <input type="text" name="username" id="username" placeholder="Your username" required   [(ngModel)]="admin.name">
             </div>
             <div class="input-container">
                 <label for="password">Password:</label>
-                <input type="password" name="password" id="password" placeholder="Your password" required>
+                <input type="password" name="password" id="password" placeholder="Your password" required [(ngModel)]="admin.password">
             </div>
             <div class="btn-container">
-                <input type="submit" class="btn btn-primary btn-md" value="Login">
+                <input type="submit" class="btn btn-primary btn-md" value="Login" (click)="sendAdmin()">
             </div>
+            <div *ngIf="errorMessage" class="error-message text-danger">
+                {{ errorMessage }}
+              </div>
         </form>
     </div>
     <hr>
