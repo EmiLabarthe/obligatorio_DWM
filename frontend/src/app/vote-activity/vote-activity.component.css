@@ -2,9 +2,7 @@
     margin-top: 0;
     display: flex;
     flex-direction: column;
-    background-color: #a9d1cd;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
     border-radius: 10px;
 }
 .activity-container{
@@ -23,12 +21,20 @@
     text-align: center;
     justify-content: space-around;
 }
+.my-icon{
+    font-size: 80px;
+    color: white;
+}
+.my-icon-ban{
+    font-size: 60px;
+    color: white;
+}
 .like-btn{
-    background-color: green;
+    background-color: rgb(6, 216, 6);
     min-height: 100px;
 }
 .neutral-btn{
-    background-color: grey;
+    background-color: rgb(168, 168, 168);
     min-height: 100px;
     text-align: center;
     justify-content: center;
@@ -40,9 +46,9 @@
     min-height: 100px;
 }
 .neutral-img{
-    background-color: black;
-    width: 23%;
-    height: 12%;
+    background-color: white;
+    width: 18%;
+    height: 8%;
     border-radius: 10px;
     position: absolute;
     top: 44%;
@@ -75,5 +81,26 @@
     .button-image{
         max-width: 50%;
         max-height: 50%;
+    }
+    .my-icon{
+        font-size: 170px;
+        color: white;
+    }
+    .my-icon-ban{
+        font-size: 100px;
+        color: white;
+    }
+    .like-btn{
+        background-color: rgb(6, 216, 6);
+        min-height: 100px;
+    }
+    .neutral-img{
+        background-color: white;
+        width: 28%;
+        height: 5%;
+        border-radius: 10px;
+        position: absolute;
+        top: 44%;
+        bottom: 50%;
     }
 }

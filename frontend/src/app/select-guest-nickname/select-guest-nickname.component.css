@@ -2,12 +2,12 @@
     display: flex;
     flex-direction: column;
     text-align: center; 
-    width: 40%;
+    width: 80%;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     margin-top: 15%;
-    background-color: #a9d1cd;
+    background-color: white;
     
 }
 
@@ -15,8 +15,9 @@ input {
     width: 100%;
     padding: 10px;
     margin: 10px 0;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    border: 1px solid #9f9f9f;
+    border-radius: 10px;
+
 }
 
 button {
@@ -27,4 +28,9 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+}
+@media (min-width: 850px) {
+    .container{
+        width: 40%;
+    }
 }

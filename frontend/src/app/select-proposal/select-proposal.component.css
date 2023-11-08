@@ -3,7 +3,6 @@
     border-radius: 10px;
     padding-bottom: 30px;
     margin: 10px;
-    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
 ul{
     width: 100%;    
@@ -77,19 +76,20 @@ li:hover{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background-image: linear-gradient(45deg, #16c1c8,/* #49cccc, #7cd7cf, #aee1d3,*/ #e1ecd6);
     border-radius: 10px;
     margin: 10px;
-    box-shadow: 5px 5px 10px 0px rgba(0, 0, 0, 0.5);
 }
 .activities-container{
     border: solid black 1px;
     border-radius: 10px;
-    overflow-y: auto;
+    overflow-y: scroll;
     height: 400px;
     background-color: white;
     width: 90%;
     display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 .activity-container{
     display: flex;
