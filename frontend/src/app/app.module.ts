@@ -7,7 +7,6 @@ import { LoginComponent } from './login/login.component';
 import { SelectProposalComponent } from './select-proposal/select-proposal.component';
 import { CreateProposalComponent } from './create-proposal/create-proposal.component';
 import { ProposalLobbyComponent } from './proposal-lobby/proposal-lobby.component';
-import { ShowProposalComponent } from './show-proposal/show-proposal.component';
 import { RankingProposalComponent } from './ranking-proposal/ranking-proposal.component';
 import { SelectGuestNicknameComponent } from './select-guest-nickname/select-guest-nickname.component';
 import { GuestWaitComponent } from './guest-wait/guest-wait.component';
@@ -23,7 +22,6 @@ import { LastElementPipe } from './last-element.pipe';
     SelectProposalComponent,
     CreateProposalComponent,
     ProposalLobbyComponent,
-    ShowProposalComponent,
     RankingProposalComponent,
     SelectGuestNicknameComponent,
     GuestWaitComponent,

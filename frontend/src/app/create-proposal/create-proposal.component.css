@@ -3,6 +3,7 @@ body {
   background: linear-gradient(45deg, #16c1c8, #e1ecd6);
   color: #333; /* Color del texto principal */
   font-family: Arial, sans-serif; /* Tipografía del cuerpo */
+  min-height: 100vh;
 }
 
 .container {

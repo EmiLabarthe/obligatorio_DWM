@@ -1,12 +1,13 @@
 const express = require('express');
 const activitySchema = require('../models/activity');
 const router = express.Router();
+const authUtils=require('../middleware/jwtAuth');
 
 
 
 
 //create a activity
-router.post('/activity', (req, res) => {
+router.post('/activity', authUtils.verifyToken,(req, res) => {
     const activity = activitySchema(req.body);
     activity
         .save()
@@ -15,7 +16,7 @@ router.post('/activity', (req, res) => {
     
 })
 //get all activities
-router.get('/activities', (req, res) => {
+router.get('/activities', authUtils.verifyToken, (req, res) => {
     
     activitySchema
         .find()

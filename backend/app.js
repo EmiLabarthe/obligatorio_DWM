@@ -3,7 +3,9 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const proposalRoute = require('./routes/proposal');
 const activityRoute = require('./routes/activity');
+const adminRoute = require('./routes/admin');
 const http = require('http');
+const authUtils = require('./middleware/jwtAuth');
 require("dotenv").config();
 
 const app = express();
@@ -73,3 +75,8 @@ mongoose.connect(process.env.MONGODB_URI, {
 httpServer.listen(PORT, () => {
   console.log(`Servidor HTTP iniciado en el puerto ${PORT}`);
 });
+
+// Rutas de la API
+app.use('/api/',adminRoute);
+app.use('/api/', proposalRoute); // Aplica el middleware verifyToken a las rutas de proposals
+app.use('/api/', activityRoute); // Aplica el middleware verifyToken a las rutas de activities

@@ -4,11 +4,17 @@
     text-align: center; 
     width: 70%;
     padding: 20px;
-    border-radius: 5px;
+    border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     margin-top: 15%;
-    background-color: #a9d1cd;
+    background-color: white;
     
+}
+input{
+    border: solid rgb(146, 146, 146) 1px;
+    border-radius: 10px;
+    padding: 4px;
+    padding-left: 10px;
 }
 .input-container{
     margin: 2%;
