@@ -26,28 +26,10 @@ export class SocketService {
     return this.message$.asObservable();
   };
 
-  // Envpia la proxima actividad y su número de posición para poder usarlo para calificar
+  // Envía la proxima actividad y su número de posición para poder usarlo para calificar
   public nextActivity( activity: Activity, position: number) {
     this.socket.emit('nextActivity', { activity, position });
     console.log("emitio")
-  }
-  
-  /*
-  // Escucha si se envía una actividad
-  onActivity(callback: (data: { activity: Activity, position: number }) => void) {
-    this.socket.on('nextActivity', callback);
-    console.log('callback')
-  }*/
-
-  public onDataEvent() {
-    return new Observable<any>((observer) => {
-      this.socket.on('nextActivity', ({activity, position}) => {
-        observer.next({activity, position});
-        console.log("recibio  ")
-      });
-    });
-  }
-
-  
+  }  
 
 }
