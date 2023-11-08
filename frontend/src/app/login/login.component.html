@@ -13,7 +13,7 @@
                 <input type="password" name="password" id="password" placeholder="Your password" required [(ngModel)]="admin.password">
             </div>
             <div class="btn-container">
-                <input type="submit" class="btn btn-primary btn-md" value="Login" (click)="sendAdmin()">
+                <input type="submit" class="btn btn-primary btn-md go" value="Login" (click)="sendAdmin()">
             </div>
             <div *ngIf="errorMessage" class="error-message text-danger">
                 {{ errorMessage }}
@@ -31,7 +31,7 @@
                 <input type="text" name="session" id="session" placeholder="Session code" required>
             </div>
             <div class="btn-container">
-                <input type="submit" class="btn btn-primary btn-md" value="Join">
+                <input type="submit" class="btn btn-primary btn-md go" value="Join">
             </div>
         </form>
     </div>
