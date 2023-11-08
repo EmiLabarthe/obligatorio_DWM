@@ -16,7 +16,7 @@ export class SessionComponent implements OnInit{
   ngOnInit() {
     //chart.js
     this.socketService.getNewMessage().subscribe((activity:Activity) => {
-      console.log(activity);
+      console.log(activity.title);
       this.currentActivity = activity;
     })
     
