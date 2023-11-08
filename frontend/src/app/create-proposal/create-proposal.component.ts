@@ -40,10 +40,11 @@ export class CreateProposalComponent {
         title: this.title,
 
     };
+      
 
     this.proposalService.addProposal(newProposal).subscribe(
         (response) => {
-            console.log('Proposal successfully sent:', response);
+            console.log('Proposal su`ccessfully sent:', response);
             this.router.navigate(['/select-proposal']);
         },
         (error) => {
