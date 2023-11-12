@@ -30,4 +30,8 @@ export class SelectProposalComponent {
   removeSelection(){
     this.selected = undefined;
   }
+
+  createSession(){
+    
+  }
 }
