@@ -7,7 +7,7 @@ const router = express.Router();
 
 
 
-router.post('/admin', async (req, res) => {
+router.post('/login', async (req, res) => {
     const admin = adminSchema(req.body);
     const token =  authUtils.generateToken("admin");
     

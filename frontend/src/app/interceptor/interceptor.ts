@@ -6,20 +6,22 @@ import {
     HttpInterceptor
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Proposal } from '../proposal';
 
 @Injectable()
 export class ExampleInterceptorInterceptor implements HttpInterceptor {
 
     constructor() { }
-        token: any;
-    intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
 
-        this.token = JSON.parse(localStorage.getItem('jwt') || '{}');
-        const reqCopy = request.clone()
-        //can set new header
-        reqCopy.headers.set("Authorization", "Bearer 12312323");
-
+    intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
+        const token = JSON.parse(localStorage.getItem('jwt') || '{}');
+        const reqCopy = request.clone({
+          setHeaders: {
+            Authorization: token
+          }
+          
+        });
+      console.log("header "+reqCopy.headers.getAll('Authorization'));
         return next.handle(reqCopy);
-
-    }
+      }
 }
