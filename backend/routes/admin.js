@@ -1,25 +1,31 @@
 const express = require('express');
 const adminSchema = require('../models/admin');
+const authUtils=require('../middleware/jwtAuth');
 const router = express.Router();
 
 
 
 
-//create a activity
+
 router.post('/admin', async (req, res) => {
     const admin = adminSchema(req.body);
+    const token =  authUtils.generateToken("admin");
+    
     try {
         const adminName = await adminSchema.findOne({ name: admin.name });
         const adminPassword = await adminSchema.findOne({ password: admin.password });
         if (!adminName || !adminPassword) {
-            return res.json({ exists: false })
+            return res.json({ exists: false });
         } else {
-            return res.json({ exists: true })
+
+            return res.json({ exists:true, token: token });
         }
     }
     catch (error) {
         console.error(error);
+        console.log(token);
         return res.status(500).json({ message: 'Server error' });
+        
     }
 
     /*

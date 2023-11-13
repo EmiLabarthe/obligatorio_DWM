@@ -37,7 +37,7 @@ export class ProposalService {
     return this.http.post<Proposal>(this.addProposalUrl, proposal, this.httpOptions).pipe(
       tap((proposal: Proposal) => console.log(`Propuesta añadida con éxito, nombre: ${proposal.title}`)),
       catchError(this.handleError<Proposal>('addProposal'))
-    );
+    );  
   }
 
 
