@@ -9,7 +9,7 @@ function generateToken(payload) {
 
 
 function verifyToken(req, res, next) {
-  
+  //cwadwa
   //const token = req.headers.authorization?.split(" ")[1];
   const token = req.headers.authorization;
     console.log("ACAESTOY");
