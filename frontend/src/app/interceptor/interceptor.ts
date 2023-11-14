@@ -15,13 +15,18 @@ export class ExampleInterceptorInterceptor implements HttpInterceptor {
 
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
         const token = JSON.parse(localStorage.getItem('jwt') || '{}');
-        const reqCopy = request.clone({
-          setHeaders: {
-            Authorization: token
-          }
-          
-        });
-      console.log("header "+reqCopy.headers.getAll('Authorization'));
-        return next.handle(reqCopy);
+        if(token){
+          const reqCopy = request.clone({
+            setHeaders: {
+              Authorization: token
+            }
+            
+          });
+          console.log("header "+reqCopy.headers.get('Authorization'));
+          return next.handle(reqCopy);
+        }else{
+          console.log("No hay token disponible");
+          return next.handle(request);
+        }
       }
 }
