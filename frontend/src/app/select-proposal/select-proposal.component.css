@@ -48,6 +48,7 @@ li:hover{
     align-items: center;
     display: flex;
     flex-direction: column;
+    
 }
 .create-button{
     height: 100px;
@@ -56,6 +57,7 @@ li:hover{
     border-radius: 10px;
     font-size:xx-large;
     border: solid black 1px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 .create-button:hover{
     border: solid black 1px;
@@ -70,6 +72,7 @@ li:hover{
     height: 400px;
     width: 95%;
     background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 .show-proposal{
     display: flex;
@@ -90,19 +93,24 @@ li:hover{
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
 }
 .activity-container{
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 10px;
-}
-.activity-title{
-    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
     border: solid rgb(52, 52, 52) 1px;
     border-radius: 5px;
+}
+.activity-title{
+    width: 100%;    
     border-top: none;
     text-align: center;
+}
+.activity-container:hover{
+    background-color: #ccc;
 }
 .buttons-container{
     width: 90%;

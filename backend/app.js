@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const proposalRoute = require('./routes/proposal');
 const activityRoute = require('./routes/activity');
+const sessionRoute = require('./routes/session')
 const adminRoute = require('./routes/admin');
 const http = require('http');
 const authUtils = require('./middleware/jwtAuth');
@@ -20,6 +21,7 @@ app.use(express.json());
 // Rutas de la API
 app.use('/api/', proposalRoute);
 app.use('/api/', activityRoute);
+app.use('/api/', sessionRoute);
 
 // Crear servidor HTTP
 const httpServer = http.createServer(app);

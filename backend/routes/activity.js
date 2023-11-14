@@ -7,7 +7,7 @@ const authUtils=require('../middleware/jwtAuth');
 
 
 //create a activity
-router.post('/activity', authUtils.verifyToken,(req, res) => {
+router.post('/activity', /*authUtils.verifyToken*/(req, res) => {
     const activity = activitySchema(req.body);
     activity
         .save()
@@ -16,7 +16,7 @@ router.post('/activity', authUtils.verifyToken,(req, res) => {
     
 })
 //get all activities
-router.get('/activities', authUtils.verifyToken, (req, res) => {
+router.get('/activities', /*authUtils.verifyToken*/ (req, res) => {
     
     activitySchema
         .find()
