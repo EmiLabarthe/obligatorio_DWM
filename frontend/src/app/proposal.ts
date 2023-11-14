@@ -2,5 +2,6 @@ import { Activity } from "./activity";
 
 export interface Proposal{
     title: string,
-    activities: Activity[]
+    activities: Activity[],
+    _id: string
 };

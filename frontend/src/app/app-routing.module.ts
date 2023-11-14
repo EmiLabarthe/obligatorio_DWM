@@ -7,6 +7,7 @@ import { SessionComponent } from './session/session.component';
 import { SelectGuestNicknameComponent } from './select-guest-nickname/select-guest-nickname.component';
 import { GuestWaitComponent } from './guest-wait/guest-wait.component';
 import { VoteActivityComponent } from './vote-activity/vote-activity.component';
+import { ProposalLobbyComponent } from './proposal-lobby/proposal-lobby.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'vote-activity', component: VoteActivityComponent},
   { path: 'select-proposal', component: SelectProposalComponent },
   { path: 'create-proposal', component: CreateProposalComponent },
-  { path: 'startedSession', component: SessionComponent}
+  { path: 'startedSession', component: SessionComponent},
+  { path: 'proposal-lobby/:proposalId', component: ProposalLobbyComponent}
 ];
 
 @NgModule({

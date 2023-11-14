@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
 
 const sessionSchema = new mongoose.Schema({
-    id:{
-        type: String,
-        required: true
+    code:{
+        type: Number
     },
-    proposalTemplateId:{
-        type: String,
-        required:true
+    proposal:{ 
+        type: mongoose.Schema.Types.ObjectId, ref: 'Proposal' 
     },
     reactionList:{
         type:Array,
@@ -16,8 +14,7 @@ const sessionSchema = new mongoose.Schema({
         type:Number
     },
     active:{
-        type:Boolean,
-        required:true
+        type:Boolean
     }
 });
 

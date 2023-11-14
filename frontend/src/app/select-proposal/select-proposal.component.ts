@@ -3,6 +3,8 @@ import { ProposalService } from '../proposal.service';
 import { Proposal } from '../proposal';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+import { SessionService } from '../session.service';
+import { Session } from '../session';
 
 @Component({
   selector: 'app-select-proposal',
@@ -11,7 +13,7 @@ import { Router } from '@angular/router';
 })
 export class SelectProposalComponent {
 
-  constructor(private proposalService : ProposalService, private router: Router){}
+  constructor(private proposalService : ProposalService, private router: Router, private sessionService: SessionService){}
 
   proposals ?: Proposal[];
 
@@ -32,6 +34,18 @@ export class SelectProposalComponent {
   }
 
   createSession(){
-    
+    if(this.selected){
+      console.log('sending session for creation');
+      this.sessionService.createSession(this.selected).subscribe(
+        (response) => {
+            this.router.navigate([`/proposal-lobby/${response._id}`]);
+            
+          }
+        ,
+        (error) => {
+          console.log('Error creating new Session:', error);
+        }
+      );
+    }
   }
 }

@@ -1,1 +1,15 @@
-<p>proposal-lobby works!</p>
+<div class="body">
+    <div class="title"><b>Your proposal is about to start!</b></div>
+    <div class="subtitle" *ngIf="session">Session code: <b>{{session._id}}</b></div>
+    <div class="players-container">
+        <div *ngFor="let player of players" class="player">
+            {{ player.name }}
+          </div>
+    </div>
+    <div class="btn-container">
+        <button class="cancel-session-btn">Cancel</button>
+        <button class="start-session-btn">Start session!</button>
+    </div>
+</div>
+
+
