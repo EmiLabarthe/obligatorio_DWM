@@ -35,9 +35,11 @@ export class CreateProposalComponent {
     return this.selectedActivities.includes(activity);
   }
   sendProposal() {
+    /*
     const newProposal: Proposal = {
         activities: this.selectedActivities,
         title: this.title,
+
 
     };
       
@@ -51,7 +53,7 @@ export class CreateProposalComponent {
             console.log('Error sending proposal:', error);
             // Handle the error (show a message to the user, etc.)
         }
-    );
+    );*/
 }
 backToAllProposals(){
   this.router.navigate(['/select-proposal']);
