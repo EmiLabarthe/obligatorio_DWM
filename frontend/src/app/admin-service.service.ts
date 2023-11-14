@@ -12,7 +12,7 @@ import { of } from 'rxjs';
 export class AdminServiceService {
 
   constructor(private http: HttpClient) { }
-  private addAdminUrl = 'http://localhost:3000/api/admin';
+  private addAdminUrl = 'http://localhost:3000/api/login';
   
   
 

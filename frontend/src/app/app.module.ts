@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -13,6 +13,7 @@ import { GuestWaitComponent } from './guest-wait/guest-wait.component';
 import { VoteActivityComponent } from './vote-activity/vote-activity.component';
 import { FormsModule } from '@angular/forms';
 import { LastElementPipe } from './last-element.pipe';
+import { ExampleInterceptorInterceptor } from './interceptor/interceptor';
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { LastElementPipe } from './last-element.pipe';
     SelectGuestNicknameComponent,
     GuestWaitComponent,
     VoteActivityComponent,
-    LastElementPipe
+    LastElementPipe 
   ],
   imports: [
     BrowserModule,
@@ -34,7 +35,11 @@ import { LastElementPipe } from './last-element.pipe';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [ExampleInterceptorInterceptor,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: ExampleInterceptorInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

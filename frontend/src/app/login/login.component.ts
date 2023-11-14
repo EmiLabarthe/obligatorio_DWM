@@ -20,6 +20,7 @@ export class LoginComponent {
     this.adminService.postAdmin(this.admin).subscribe(
       (response: any) => {
         if (response.exists == true) {
+          localStorage.setItem('jwt', JSON.stringify(response.token));
           console.log('Admin successfully sent:', response);
           this.router.navigate(['/select-proposal']);
         } else {
