@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ranking-proposal',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class RankingProposalComponent {
 
+
+  constructor(private router: Router){
+  }
+
+  exit(){
+    this.router.navigate(['/select-proposal']);
+  }
 }

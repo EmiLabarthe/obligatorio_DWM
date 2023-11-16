@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 import { SessionService } from '../session.service';
 import { Session } from '../session';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-proposal-lobby',
@@ -12,7 +13,7 @@ export class ProposalLobbyComponent {
 
   session?: Session;
 
-  constructor(private route: ActivatedRoute, private sessionService: SessionService) {}
+  constructor(private route: ActivatedRoute, private sessionService: SessionService, private router: Router) {}
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -24,6 +25,10 @@ export class ProposalLobbyComponent {
           }
         )
       });
+  }
+
+  cancelSession(){
+    this.router.navigate(['/select-proposal']);
   }
 
   //MOCK PLAYERS
