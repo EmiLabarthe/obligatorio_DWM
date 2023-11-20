@@ -35,14 +35,25 @@ export class ActivityServiceService {
  
   postActivity(activity: Activity) {
     const requestBody = {
-        title: activity.title,
-        imgPath: activity.imgPath
+      title: activity.title,
+      imgPath: activity.imgPath
     };
     console.log('Request Payload:', requestBody);
-
-    this.http.post<Activity>(this.postActivityUrl, requestBody, this.httpOptions);
-    
-}
+  
+    this.http.post<Activity>(this.postActivityUrl, requestBody, this.httpOptions)
+      .subscribe(
+        () => {
+          console.log('Response from backend:');
+          location.reload();
+          
+        },
+        (error) => {
+          console.error('Error:', error);
+          
+        }
+      );
+  }
+  
 
 
   

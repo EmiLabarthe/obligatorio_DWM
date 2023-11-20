@@ -65,6 +65,7 @@ sendActivity(){
   console.log(newActivity);
   try {
     this.activityService.postActivity(newActivity); 
+    
   } catch (error) {
     alert('Error al crear la actividad');
   }
