@@ -22,7 +22,7 @@ export class ProposalService {
     //const request = new HttpRequest('GET', this.proposalUrl);
     
     // Intercept the request with your interceptor.
-    //const interceptedRequest  = this.exampleInterceptor.intercept(request, this.httpHandler);
+    //const ixnterceptedRequest  = this.exampleInterceptor.intercept(request, this.httpHandler);
           return this.http.get<Proposal[]>(this.addProposalUrl
             )
         .pipe(
@@ -42,8 +42,21 @@ getProposal(id: number): Observable < Proposal > {
 }
 
 addProposal(proposal: Proposal): Observable < Proposal > {
-  console.log('Propuesta a enviar:', proposal); // Verifica el objeto proposal antes de enviarlo
-  return this.http.post<Proposal>(this.addProposalUrl, proposal, this.httpOptions).pipe(
+  console.log('Propuesta a enviar:', proposal._id);
+  const arrayActividades: string[] = [];
+  //arrayActividades.push(proposal.title);
+    proposal.activities.forEach(
+    (activity) => {
+      arrayActividades.push(activity.title);
+    })
+
+    let requestBody = {
+      title: proposal.title,
+      activities: arrayActividades
+    };
+ 
+ console.log(requestBody);
+  return this.http.post<Proposal>(this.addProposalUrl, requestBody, this.httpOptions).pipe(
     tap((proposal: Proposal) => console.log(`Propuesta añadida con éxito, nombre: ${proposal.title}`)),
     catchError(this.handleError<Proposal>('addProposal'))
   );
