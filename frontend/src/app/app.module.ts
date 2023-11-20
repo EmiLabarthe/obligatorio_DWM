@@ -35,11 +35,11 @@ import { ExampleInterceptorInterceptor } from './interceptor/interceptor';
     HttpClientModule,
     FormsModule
   ],
-  providers: [ExampleInterceptorInterceptor,{
-    provide: HTTP_INTERCEPTORS,
-    useClass: ExampleInterceptorInterceptor,
-    multi: true
-  }],
+    providers: [ExampleInterceptorInterceptor,{
+      provide: HTTP_INTERCEPTORS,
+      useClass: ExampleInterceptorInterceptor,
+      multi: true
+    }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
