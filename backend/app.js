@@ -35,9 +35,9 @@ app.get('/', (req, res) => {
   res.send('¡Hola, mundo!');
 });
 
-app.post('/session/start',(req,res)=>{
+app.post('/sessions/start',(req,res)=>{
   jugarJuego(0)
-  res.send('ok')
+  res.send({msg: 'ok'})
 });
 
 function jugarJuego(posicion){
