@@ -14,6 +14,8 @@ export class CreateProposalComponent {
   selectedActivities: Activity[] = [];
   activities: Activity[] = [];
   title:string=" ";
+  urlActivity: string = "";
+  titleActivity: string = "";
   ngOnInit(): void {
     this.activityService.getActivities().subscribe(activities => {
       this.activities = activities;
@@ -54,6 +56,16 @@ export class CreateProposalComponent {
         }
     );
 }
+
+sendActivity(){
+  const newActivity: Activity = {
+    title: this.titleActivity,
+    imgPath: this.urlActivity,
+  };
+  console.log(newActivity);
+  this.activityService.postActivity(newActivity)
+}
+
 backToAllProposals(){
   this.router.navigate(['/select-proposal']);
 }
