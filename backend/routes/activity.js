@@ -6,6 +6,17 @@ const authUtils=require('../middleware/jwtAuth');
 
 
 
+     
+
+//get all activities
+router.get('/activities', (req, res) => {
+    
+    activitySchema
+        .find()
+        .then((data) => res.json(data))
+        .catch((error)=> res.json({message:error}))
+});
+
 //create a activity
 router.post('/activities', async (req, res) => {
     console.log("llego al endpoint");
@@ -27,20 +38,10 @@ router.post('/activities', async (req, res) => {
 
         const data = await nuevaActivity.save();
         res.status(201).json({ mensaje: 'Activity creada exitosamente', data });
-    } catch (error) {
+    } 
+    catch (error) {
         console.error(error);
         res.status(500).json({ mensaje: 'Error en el servidor al crear la activity' ,data});
     }
-});
-
-//get all activities
-router.get('/activities', (req, res) => {
-    
-    activitySchema
-        .find()
-        .then((data) => res.json(data))
-        .catch((error)=> res.json({message:error}))
-});
-
-
+});    
 module.exports = router;

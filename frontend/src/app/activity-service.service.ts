@@ -12,10 +12,11 @@ export class ActivityServiceService {
 
   constructor(private http: HttpClient, private httpHandler: HttpHandler) { }
   private activityUrl = 'http://localhost:3000/api/activities';
+  private postActivityUrl = 'http://localhost:3000/api/activities';
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
+};
 
   getActivities(): Observable<Activity[]> {
     return this.http.get<Activity[]>(this.activityUrl)
@@ -31,24 +32,17 @@ export class ActivityServiceService {
       catchError(this.handleError<Activity>(`getProposal id=${id}`))
     )
   }
-  addProposal(activity: Activity): Observable<Activity> {
-    return this.http.post<Activity>(this.activityUrl, activity, this.httpOptions).pipe(
-      tap((newActivity: Activity) => console.log(`added activity w/ id=${newActivity}`)),
-      catchError(this.handleError<Activity>('addActivity'))
-    );
-  }
-
-  postActivity(activity: Activity): Observable<Activity> {
-    let requestBody = {
-      title: activity.title,
-      imgPath: activity.imgPath
+ 
+  postActivity(activity: Activity) {
+    const requestBody = {
+        title: activity.title,
+        imgPath: activity.imgPath
     };
-    console.log(requestBody);
-    return this.http.post<Activity>(this.activityUrl, requestBody, this.httpOptions).pipe(
-      tap((activity: Activity) => console.log(`Actividad añadida con éxito, nombre: ${activity}`)),
-      catchError(this.handleError<Activity>('postActivity'))
-    );
-  }
+    console.log('Request Payload:', requestBody);
+
+    this.http.post<Activity>(this.postActivityUrl, requestBody, this.httpOptions);
+    
+}
 
 
   

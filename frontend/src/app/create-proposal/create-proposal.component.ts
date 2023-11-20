@@ -63,7 +63,11 @@ sendActivity(){
     imgPath: this.urlActivity,
   };
   console.log(newActivity);
-  this.activityService.postActivity(newActivity)
+  try {
+    this.activityService.postActivity(newActivity); 
+  } catch (error) {
+    alert('Error al crear la actividad');
+  }
 }
 
 backToAllProposals(){
