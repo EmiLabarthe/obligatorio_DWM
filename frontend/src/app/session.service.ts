@@ -24,6 +24,15 @@ export class SessionService {
       catchError(this.handleError<Session>('createSession'))
     );
   }
+
+  startSession(sessionId: string)
+  {
+    console.log('Empezar sesión '+sessionId);
+    return this.http.post<Session>(`${this.sessionUrl}/start`, {_id: sessionId}, this.httpOptions).pipe(
+      tap((session: Session) => console.log(`Session added successfully, data: ${session._id}`)),
+      catchError(this.handleError<Session>('startSession'))
+    );
+  }
   
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

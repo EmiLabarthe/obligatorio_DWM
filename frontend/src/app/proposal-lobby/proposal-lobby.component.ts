@@ -51,5 +51,12 @@ export class ProposalLobbyComponent {
     {mame: "carlitos tevez"},
     {mame: "ROMAN"}
   ]
+
+  startSession(){
+    if(this.session){
+      this.sessionService.startSession(this.session._id);
+      this.router.navigate(['/vote-activity']);
+    }
+  }
 }
 
