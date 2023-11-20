@@ -8,7 +8,7 @@ import { Activity } from './activity';
 })
 export class SocketService {
 
-  public message$: BehaviorSubject<Activity> = new BehaviorSubject({title:'a', imgPath:''});
+  public message$: BehaviorSubject<Activity> = new BehaviorSubject({title:'Esperando actividad', imgPath:''});
   constructor() {} 
 
   socket = io('http://localhost:3000');
@@ -20,16 +20,9 @@ export class SocketService {
   public getNewMessage = () => {
     this.socket.on('sendNewActivity', (activity) =>{
       this.message$.next(activity);
-      console.log('la actividad', activity);
     });
     
     return this.message$.asObservable();
   };
-
-  // Envía la proxima actividad y su número de posición para poder usarlo para calificar
-  public nextActivity( activity: Activity, position: number) {
-    this.socket.emit('nextActivity', { activity, position });
-    console.log("emitio")
-  }  
 
 }

@@ -1,16 +1,19 @@
 <div class="container">
     <div class="activity-container">
-        <img class="activity-image" src="https://www.cnet.com/a/img/resize/ea5ddbafc037b5e1230c1a55a1a53eea7dec1d36/hub/2020/10/26/b60bfe6f-3193-4381-b0d4-ac628cdcc565/img-1419.jpg?auto=webp&fit=crop&height=675&width=1200" />
+        <h1>{{currentActivity.title}}</h1>
+        <img class="activity-image" src="{{currentActivity.imgPath}}" />
     </div>
+    <div *ngIf="voto">
     <div class="votation-container">
-        <button class="buttons like-btn btn btn-success">
+        <button class="buttons like-btn btn btn-success" (click)="onClick(1)">
             <i class="bi bi-check-lg my-icon"></i>
         </button>
-        <button class="buttons neutral-btn btn btn-secondary">
+        <button class="buttons neutral-btn btn btn-secondary" (click)="onClick(0)">
             <div class="neutral-img"></div>
         </button>
-        <button class="buttons dislike-btn btn btn-danger">
+        <button class="buttons dislike-btn btn btn-danger" (click)="onClick(-1)">
             <i class="bi bi-ban my-icon-ban"></i>
         </button>
+    </div>
     </div>
 </div>
