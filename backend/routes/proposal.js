@@ -6,7 +6,7 @@ const authUtils = require('../middleware/jwtAuth');
 
 
 //create a proposal
-router.post('/proposals', authUtils.verifyToken,async (req, res) => {
+router.post('/proposals', authUtils.verifyToken, async (req, res) => {
     console.log("llego al endpoint");
     try {
         let arrayActividades = [];

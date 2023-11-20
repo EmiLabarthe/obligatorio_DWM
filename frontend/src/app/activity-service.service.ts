@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHandler } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Activity } from './activity';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -9,44 +10,60 @@ import { of } from 'rxjs';
 })
 export class ActivityServiceService {
 
-  constructor(private http: HttpClient) { }
-  private activitylUrl = 'http://localhost:3000/api/activities';
+  constructor(private http: HttpClient, private httpHandler: HttpHandler) { }
+  private activityUrl = 'http://localhost:3000/api/activities';
+  private postActivityUrl = 'http://localhost:3000/api/activities';
 
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+};
 
   getActivities(): Observable<Activity[]> {
-    return this.http.get<Activity[]>(this.activitylUrl)
+    return this.http.get<Activity[]>(this.activityUrl)
       .pipe(
         tap(_ => console.log('fetched activities')),
         catchError(this.handleError<Activity[]>('getActivities', []))
       );
   }
   getActivity(id: number): Observable<Activity> {
-    const url = `${this.activitylUrl}/${id}`;
+    const url = `${this.activityUrl}/${id}`;
     return this.http.get<Activity>(url).pipe(
       tap(_ => console.log(`fetched activity id=${id}`)),
       catchError(this.handleError<Activity>(`getProposal id=${id}`))
     )
   }
-  addProposal(activity: Activity): Observable<Activity> {
-    return this.http.post<Activity>(this.activitylUrl, activity, this.httpOptions).pipe(
-      tap((newActivity: Activity) => console.log(`added activity w/ id=${newActivity}`)),
-      catchError(this.handleError<Activity>('addActivity'))
-    );
+ 
+  postActivity(activity: Activity) {
+    const requestBody = {
+      title: activity.title,
+      imgPath: activity.imgPath
+    };
+    console.log('Request Payload:', requestBody);
+  
+    this.http.post<Activity>(this.postActivityUrl, requestBody, this.httpOptions)
+      .subscribe(
+        () => {
+          console.log('Response from backend:');
+          location.reload();
+          
+        },
+        (error) => {
+          console.error('Error:', error);
+          
+        }
+      );
   }
+  
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
+
+  
 
   private handleError<T>(operation = 'operation', result?: T) {
+    console.log(operation+ "no nada");
     return (error: any): Observable<T> => {
 
-      // TODO: send the error to remote logging infrastructure
-      console.error(error); // log to console instead
+      console.error(error); 
 
-      // TODO: better job of transforming error for user consumption
-
-      // Let the app keep running by returning an empty result.
       return of(result as T);
     };
   }
