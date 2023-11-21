@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { SessionService } from '../session.service';
 import { Session } from '../session';
 import { Router } from '@angular/router';
+import { ProposalService } from '../proposal.service';
 
 @Component({
   selector: 'app-proposal-lobby',
@@ -13,7 +14,7 @@ export class ProposalLobbyComponent {
 
   session?: Session;
 
-  constructor(private route: ActivatedRoute, private sessionService: SessionService, private router: Router) {}
+  constructor(private route: ActivatedRoute, private sessionService: SessionService, private proposalService: ProposalService, private router: Router) {}
 
   ngOnInit() {
     this.route.params.subscribe(
@@ -54,7 +55,7 @@ export class ProposalLobbyComponent {
 
   startSession(){
     if(this.session){
-      this.sessionService.startSession(this.session._id).subscribe();
+      this.sessionService.startSession(this.session._id, this.session.proposal).subscribe();
       this.router.navigate(['/vote-activity']);
     }
   }

@@ -25,10 +25,10 @@ export class SessionService {
     );
   }
 
-  startSession(sessionId: string)
+  startSession(sessionId: string, proposal: Proposal)
   {
     console.log('Empezar sesión '+sessionId);
-    return this.http.post(`http://localhost:3000/sessions/start`, {id: sessionId}, this.httpOptions).pipe(
+    return this.http.post(`http://localhost:3000/sessions/start`, {proposal}, this.httpOptions).pipe(
       tap((data: any) => console.log(`Session started successfully, data: ${data.msg}`)),
       catchError(this.handleError<Session>('startSession'))
     );

@@ -14,8 +14,12 @@ export class ExampleInterceptorInterceptor implements HttpInterceptor {
     constructor() { }
 
     intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const token = JSON.parse(localStorage.getItem('jwt') || '{}');
-        if(token){
+        const token =  JSON.parse(localStorage.getItem('jwt') || '{}');
+        let path = window.location.pathname;
+        if(path.includes('login')){
+          return next.handle(request);
+        }
+
           const reqCopy = request.clone({
             setHeaders: {
               Authorization: token
@@ -24,9 +28,5 @@ export class ExampleInterceptorInterceptor implements HttpInterceptor {
           });
           console.log("header "+reqCopy.headers.get('Authorization'));
           return next.handle(reqCopy);
-        }else{
-          console.log("No hay token disponible");
-          return next.handle(request);
-        }
       }
 }
