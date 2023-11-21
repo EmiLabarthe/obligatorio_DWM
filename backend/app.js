@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const proposalSchema = require('./models/proposal');
 const proposalRoute = require('./routes/proposal');
 const activityRoute = require('./routes/activity');
 const sessionRoute = require('./routes/session')
@@ -35,20 +36,23 @@ app.get('/', (req, res) => {
   res.send('¡Hola, mundo!');
 });
 
-app.post('/sessions/start',(req,res)=>{
-  jugarJuego(0)
-  res.send({msg: 'ok'})
+app.post('/sessions/start', async (req,res)=>{
+  const proposalId = req.body.proposal;
+  const proposal = await proposalSchema.findById(proposalId).populate('activities').exec();
+  jugarJuego(proposal.activities, 0);
+  res.send({msg: 'ok'});
 });
 
-function jugarJuego(posicion){
-  const activities = [{title:'Actividad 1', imgPath:'https://inesdi-cdn.s3.eu-west-3.amazonaws.com/inesdi-prod/2022-05/Cronograma%20de%20actividades%20que%CC%81%20es%20y%20co%CC%81mo%20hacerlo-1.jpg'}, 
-  {title:'Actividad 2', imgPath:'https://image.api.playstation.com/vulcan/img/cfn/11307uYG0CXzRuA9aryByTHYrQLFz-HVQ3VVl7aAysxK15HMpqjkAIcC_R5vdfZt52hAXQNHoYhSuoSq_46_MT_tDBcLu49I.png'},
-   {title:'Actividad 3', imgPath:'https://image.api.playstation.com/vulcan/img/cfn/11307CjjUZ9rA_whmJUghJsG9Hl1-rmnOUTk3-nccj01ZpYMCHrJ8k8kzBrVyp-p-iCPej73TEJAs88ZBeiZ1uirtj0fsa16.png'}]
+function jugarJuego(activities, posicion){
+  //const activities = [{title:'Actividad 1', imgPath:'https://inesdi-cdn.s3.eu-west-3.amazonaws.com/inesdi-prod/2022-05/Cronograma%20de%20actividades%20que%CC%81%20es%20y%20co%CC%81mo%20hacerlo-1.jpg'}, 
+  //{title:'Actividad 2', imgPath:'https://image.api.playstation.com/vulcan/img/cfn/11307uYG0CXzRuA9aryByTHYrQLFz-HVQ3VVl7aAysxK15HMpqjkAIcC_R5vdfZt52hAXQNHoYhSuoSq_46_MT_tDBcLu49I.png'},
+  // {title:'Actividad 3', imgPath:'https://image.api.playstation.com/vulcan/img/cfn/11307CjjUZ9rA_whmJUghJsG9Hl1-rmnOUTk3-nccj01ZpYMCHrJ8k8kzBrVyp-p-iCPej73TEJAs88ZBeiZ1uirtj0fsa16.png'}]
   if(posicion < activities.length)
   {
     setTimeout(() => {
       io.emit('sendNewActivity', activities[posicion]);
-      jugarJuego(posicion+1)
+      console.log(activities[posicion])
+      jugarJuego(activities, posicion+1)
     }, 3000);
   }
   else
