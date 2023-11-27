@@ -52,15 +52,14 @@ function jugarJuego(activities, posicion){
   if(posicion < activities.length)
   {
     setTimeout(() => {
-      io.emit('sendNewActivity', activities[posicion]);
-      console.log(activities[posicion])
+      io.emit('sendNewActivity', {activity:activities[posicion], position:posicion});
       jugarJuego(activities, posicion+1)
     }, starter * 3000);
   }
   else
   {
     setTimeout(() => {
-      io.emit('sendNewActivity',{title:'Terminó el juego', imgPath:''});
+      io.emit('sendNewActivity',{activity:{title:'Terminó el juego', imgPath:''}, position:-1});
     }, 3000);
 
   }
