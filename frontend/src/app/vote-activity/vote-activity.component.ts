@@ -25,6 +25,7 @@ export class VoteActivityComponent {
     this.voto = false;
     this.sessionService.postReaction(this.sessionId, this.nickname, this.currentActivity.title, reaction).subscribe();
   }
+  
   ngOnInit() {
     var nick =  localStorage.getItem('nickname');
     if(nick != null)

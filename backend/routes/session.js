@@ -18,7 +18,7 @@ router.get('/sessions/ranking/:id', async (req, res) => {
 
         const votes = session.reactionList.map(reaction => ({
             idAct: reaction.idAct,
-            votes: [...new Set(reaction.votes)].length
+            votes: [...new Set(reaction.votes)].length - [...new Set(reaction.unvotes)].length
           }));
 
         const sortedVotes = votes.sort((a, b) => b.votes - a.votes);
@@ -94,11 +94,22 @@ router.post('/sessions/:id/reaction',async (req, res) => {
         const sessionId = req.params.id;
         console.log("session: "+sessionId);
         const user = req.body.user;
-        const vote = req.body.vote; 
+        const vote = req.body.vote;
         console.log(activityId)
-        const sessionVote = await sessionSchema.updateOne({ _id:sessionId, "reactionList.idAct": activityId},
-        { $addToSet: { 'reactionList.$.votes': user}  });
-        if (sessionVote.modifiedCount > 0) {
+        
+        let updateField
+        if (vote === 1) {
+            updateField = 'votes';
+        } if (vote === -1) {
+            updateField = 'unvotes';
+        }
+        
+        if(vote === 1 || vote === -1){
+            sessionVote = await sessionSchema.updateOne({ _id:sessionId, "reactionList.idAct": activityId},
+            { $addToSet: { [`reactionList.$.${updateField}`]: user}  });
+        }
+        
+        if (sessionVote.modifiedCount > 0 || vote === 0) {
             res.status(200).json({ message: 'User added to reactionList successfully' });
         } else {
             res.status(404).json({ message: 'Activity ID not found or user already exists in the list' });

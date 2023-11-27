@@ -43,7 +43,9 @@ export class SessionService {
   {
     console.log("llego al service, sesion: "+ sessionId)
     const connection = `http://localhost:3000/api/sessions/${sessionId}/reaction`
+    console.log(`activityID: ${activityId}`)
     return this.http.post<any>(connection, {user, _id: activityId, vote}, this.httpOptions).pipe(
+      tap((data: any) => console.log(data.msg)),
       catchError((error: any) => {
         console.error('Error occurred:', error);
         return 'Something went wrong while making the POST request.';

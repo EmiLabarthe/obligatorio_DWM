@@ -54,13 +54,13 @@ function jugarJuego(activities, posicion){
     setTimeout(() => {
       io.emit('sendNewActivity', {activity:activities[posicion], position:posicion});
       jugarJuego(activities, posicion+1)
-    }, starter * 3000);
+    }, starter * 8000);
   }
   else
   {
     setTimeout(() => {
       io.emit('sendNewActivity',{activity:{title:'Terminó el juego', imgPath:''}, position:-1});
-    }, 3000);
+    }, 8000);
 
   }
 }
