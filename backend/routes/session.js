@@ -3,46 +3,7 @@ const proposalSchema = require('../models/proposal');
 const sessionSchema = require('../models/session');
 const router = express.Router();
 
-router.get('/sessions/rankingb/:id', async (req, res) => {
-    try{
-        const sessionId = req.params.id;
-
-        const session = await sessionSchema.findById(sessionId)
-        if (!session) {
-            return res.status(404).json({ error: 'Sesión no encontrada' });
-        }
-        console.log(session)
-
-        const uniqueReactions = session.reactionList.map(reaction => ({
-            idAct: reaction.idAct,
-            votes: [...new Set(reaction.votes)].length
-          }));
-
-        res.json(uniqueReactions)
-    }catch (error) {
-        console.error(error);
-        return res.status(500).json({ error: 'Error interno del servidor' });
-    }
-})
-
-function cleanVotes(reactionList) {
-    const uniqueVotesLengths = {};
-
-    reactionList.forEach(reaction => {
-        const reactionId = Object.keys(reaction)[0];
-        const votes = Object.values(reaction)[0];
-
-        // Calcular la longitud de votos únicos para cada ID
-        const uniqueUsers = [...new Set(votes)];
-        const length = uniqueUsers.length;
-
-        // Agregar al objeto de resultados
-        uniqueVotesLengths[reactionId] = length;
-    });
-
-    return uniqueVotesLengths;
-}
-
+// Generar ranking de actividades
 router.get('/sessions/ranking/:id', async (req, res) => {
     try{
         const sessionId = req.params.id;
@@ -53,31 +14,17 @@ router.get('/sessions/ranking/:id', async (req, res) => {
         }
         console.log(session)
 
-        const reactionList = {};
-        for (const actividad in session.reactionList) {
-            if (typeof session.reactionList[actividad] === 'object' && session.reactionList[actividad] !== null) {
-                console.log("pre", session.reactionList[actividad])
-                const usuarios = Object.values(session.reactionList[actividad]);
-                // Eliminar votos duplicados pasando a Set
-                const votosSinDuplicados = Array.from(new Set(usuarios.flat()));
-                reactionList[actividad] = votosSinDuplicados;
-                console.log("post", session.reactionList[actividad])
-                
-            } else {
-                console.error('La propiedad no es un diccionario:', session.reactionList[actividad]);
-            }
-        }
+        const votes = session.reactionList.map(reaction => ({
+            idAct: reaction.idAct,
+            votes: [...new Set(reaction.votes)].length
+          }));
 
-        const actividadesConVotos = Object.entries(reactionList).map(([actividad, votos]) => ({
-            actividad,
-            votos: votos.length
-        }));
-        const actividadesOrdenadas = actividadesConVotos.sort((a, b) => b.votos - a.votos);
-    
-        res.status(200).json(actividadesOrdenadas);
-    } catch (error) {
-      console.error(error);
-      return res.status(500).json({ error: 'Error interno del servidor' });
+        const sortedVotes = votes.sort((a, b) => b.votes - a.votes);
+
+        res.json({ sortedVotes })
+    }catch (error) {
+        console.error(error);
+        return res.status(500).json({ error: 'Error interno del servidor' });
     }
 })
 

@@ -1,4 +1,4 @@
-<body>
+<body *ngIf="activityFirst">
     <div class="title"><h2>Your session has finished</h2></div>
     <div class="subtitle"><b>Here are the results!</b></div>
     <hr class="split">
@@ -9,7 +9,7 @@
         </div>
         <div class="position first">
             <h2>1º</h2>
-            <p>first place</p>
+            <p>{{ activityFirst.title }}</p>
         </div>
         <div class="position third">
             <h2>3º</h2>

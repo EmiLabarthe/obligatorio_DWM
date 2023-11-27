@@ -33,6 +33,11 @@ export class SessionService {
       catchError(this.handleError<Session>('startSession'))
     );
   }
+
+  getRanking(sessionId: string){
+    console.log('buscando ranking de la session:', sessionId);
+    return this.http.get<Object[]>(`${this.sessionUrl}/ranking/${sessionId}`);
+  }
   
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
