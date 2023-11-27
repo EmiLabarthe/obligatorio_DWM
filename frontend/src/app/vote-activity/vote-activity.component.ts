@@ -18,15 +18,15 @@ export class VoteActivityComponent {
   onClick(reaction: number)
   {
     this.voto = false;
-    this.nickname;
+    
   }
   ngOnInit() {
     //chart.js
-    this.socketService.getNewMessage().subscribe((activity:Activity) => {
-    this.currentActivity = activity;
-    this.voto = activity.title != "Terminó el juego" && activity.title != "Esperando actividad";
-    this.activityPosition += 1;
-    if(activity.title == "Terminó el juego")
+    this.socketService.getNewMessage().subscribe((message) => {
+    this.currentActivity = message.activity;
+    this.activityPosition = message.position;
+    this.voto = this.activityPosition !=-1;
+    if(this.currentActivity.title == "Terminó el juego" && this.activityPosition == -1)
     {
       this.router.navigate(['/ranking-proposal'])
     }
