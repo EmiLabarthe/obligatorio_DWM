@@ -3,6 +3,7 @@ import { Activity } from '../activity';
 import { SocketService } from '../socket.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
+import { SessionService } from '../session.service';
 
 @Component({
   selector: 'app-vote-activity',
@@ -14,16 +15,23 @@ export class VoteActivityComponent {
   currentActivity:Activity = {title:'Esperando actividad', imgPath:''};
   voto: boolean = false;
   sessionId: string = "";
-  constructor(private socketService: SocketService, private router: Router, private route: ActivatedRoute) {}
+  constructor(private socketService: SocketService, private router: Router, private route: ActivatedRoute, private sessionService: SessionService) {}
   activityPosition = -1;
-  nickname = localStorage.getItem('nickname');
+  nickname = "prueba";
   
   onClick(reaction: number)
   {
+    console.log("Se votó: "+this.nickname+" en"+this.sessionId)
     this.voto = false;
-    
+    this.sessionService.postReaction(this.sessionId, this.nickname, this.currentActivity.title, reaction).subscribe();
   }
+  
   ngOnInit() {
+    var nick =  localStorage.getItem('nickname');
+    if(nick != null)
+    {
+      this.nickname = nick;
+    }
     // Get parameter from route
     this.route.params.subscribe(params => {
       // Accessing individual parameter values

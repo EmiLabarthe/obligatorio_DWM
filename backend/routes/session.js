@@ -1,6 +1,8 @@
 const express = require('express');
 const proposalSchema = require('../models/proposal');
 const sessionSchema = require('../models/session');
+const activitySchema = require('../models/activity')
+const activity = require('../models/activity');
 const router = express.Router();
 
 // Generar ranking de actividades
@@ -16,7 +18,7 @@ router.get('/sessions/ranking/:id', async (req, res) => {
 
         const votes = session.reactionList.map(reaction => ({
             idAct: reaction.idAct,
-            votes: [...new Set(reaction.votes)].length
+            votes: [...new Set(reaction.votes)].length - [...new Set(reaction.unvotes)].length
           }));
 
         const sortedVotes = votes.sort((a, b) => b.votes - a.votes);
@@ -33,13 +35,22 @@ router.get('/sessions/ranking/:id', async (req, res) => {
     try{
         const proposalId = req.body._id;
         const proposalExistente = await proposalSchema.findById(proposalId);
+        let activitiesId= [];
+        proposalExistente.activities.forEach(activity => {
+            activitiesId.push(activity._id)
+        });
 
+        const activities = await activitySchema.find({"_id":{$in:activitiesId}})
+        let reactionList = [];
+        activities.forEach(activity => {
+            reactionList.push({idAct: activity.title, votes:[]});
+        })
         if (proposalExistente)  {
             const nuevaSession = new sessionSchema({
                 code: 10,
                 proposal: proposalExistente,
-                reactionList: [],
-                currentPosition: 23,
+                reactionList: reactionList,
+                currentPosition: 0,
                 active: true,
             });
         const data = await nuevaSession.save();
@@ -77,21 +88,35 @@ router.get('/sessions/:id', (req, res) => {
 })
 
 // post a reaction
-router.post('/sessions/:id',async (req, res) => {
+router.post('/sessions/:id/reaction',async (req, res) => {
     try{
         const activityId = req.body._id;
         const sessionId = req.params.id;
+        console.log("session: "+sessionId);
         const user = req.body.user;
-        const sessionVote = await sessionSchema.updateOne({ code:sessionId, "reactionList.idAct": activityId},
-        { $addToSet: { 'reactionList.$.votes': user}  });
-        if (sessionVote.modifiedCount > 0) {
+        const vote = req.body.vote;
+        console.log(activityId)
+        
+        let updateField
+        if (vote === 1) {
+            updateField = 'votes';
+        } if (vote === -1) {
+            updateField = 'unvotes';
+        }
+        
+        if(vote === 1 || vote === -1){
+            sessionVote = await sessionSchema.updateOne({ _id:sessionId, "reactionList.idAct": activityId},
+            { $addToSet: { [`reactionList.$.${updateField}`]: user}  });
+        }
+        
+        if (sessionVote.modifiedCount > 0 || vote === 0) {
             res.status(200).json({ message: 'User added to reactionList successfully' });
         } else {
             res.status(404).json({ message: 'Activity ID not found or user already exists in the list' });
         }
     }catch(error){
         console.error(error);
-        res.status(500).json({ mensaje: 'Error en el servidor al crear la sesión' });
+        res.status(500).json({ mensaje: 'Falló algo' });
     }
 })
 
