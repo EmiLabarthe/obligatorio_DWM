@@ -38,6 +38,18 @@ export class SessionService {
     console.log('buscando ranking de la session:', sessionId);
     return this.http.get<Object[]>(`${this.sessionUrl}/ranking/${sessionId}`);
   }
+
+  postReaction(sessionId: string, user: string, activityId: string, vote: number): Observable<any> 
+  {
+    console.log("llego al service, sesion: "+ sessionId)
+    const connection = `http://localhost:3000/api/sessions/${sessionId}/reaction`
+    return this.http.post<any>(connection, {user, _id: activityId, vote}, this.httpOptions).pipe(
+      catchError((error: any) => {
+        console.error('Error occurred:', error);
+        return 'Something went wrong while making the POST request.';
+      })
+    )
+  }
   
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -45,6 +57,8 @@ export class SessionService {
       return of(result as T);
     };
   }
+
+
 
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
