@@ -56,7 +56,7 @@ export class ProposalLobbyComponent {
   startSession(){
     if(this.session){
       this.sessionService.startSession(this.session._id, this.session.proposal).subscribe();
-      this.router.navigate(['/vote-activity']);
+      this.router.navigate([`/vote-activity/${this.session._id}`]);
     }
   }
 }
