@@ -38,18 +38,18 @@ body {
 
 .first {
     background-color: gold;
-    height: 200px;
+    height: 220px;
     
 }
 
 .second {
     background-color: silver;
-    height: 130px;
+    height: 150px;
 }
 
 .third {
     background-color: #cd7f32;
-    height: 110px;
+    height: 130px;
 }
 .btn-container{
     width: 90%;

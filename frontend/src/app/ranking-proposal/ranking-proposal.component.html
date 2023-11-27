@@ -1,19 +1,22 @@
-<body>
+<body *ngIf="activityFirst && activitySecond && activityThird">
     <div class="title"><h2>Your session has finished</h2></div>
     <div class="subtitle"><b>Here are the results!</b></div>
     <hr class="split">
     <div class="podium">
         <div class="position second">
             <h2>2º</h2>
-            <p>second place</p>
+            <p>{{ activitySecond.title }}</p>
+            <p>{{ranking[1].votes}} voto(s)</p>
         </div>
         <div class="position first">
             <h2>1º</h2>
-            <p>first place</p>
+            <p>{{ activityFirst.title }}</p>
+            <p>{{ranking[0].votes}} voto(s)</p>
         </div>
         <div class="position third">
             <h2>3º</h2>
-            <p>third place</p>
+            <p>{{ activityThird.title }}</p>
+            <p>{{ranking[2].votes}} voto(s)</p>
         </div>
     </div>    
     <div class="btn-container">
