@@ -12,7 +12,7 @@ import { Activity } from '../activity';
 })
 export class RankingProposalComponent {
   
-  ranking? : any[];
+  ranking? : any;
   activityFirst? : Activity;
   activitySecond? : Activity;
   activityThird? : Activity;
@@ -25,7 +25,7 @@ export class RankingProposalComponent {
       (params: Params) => {
         const id = params['sessionId'];
         this.sessionService.getRanking(id).subscribe(
-          (res) => {
+          (res:any) => {
             this.ranking = res;
 
             this.activityService.getActivity(this.ranking[0].idAct).subscribe(

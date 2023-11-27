@@ -21,7 +21,7 @@ router.get('/sessions/ranking/:id', async (req, res) => {
 
         const sortedVotes = votes.sort((a, b) => b.votes - a.votes);
 
-        res.json({ sortedVotes })
+        res.json(sortedVotes)
     }catch (error) {
         console.error(error);
         return res.status(500).json({ error: 'Error interno del servidor' });

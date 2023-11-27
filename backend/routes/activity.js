@@ -17,6 +17,15 @@ router.get('/activities', (req, res) => {
         .catch((error)=> res.json({message:error}))
 });
 
+router.get('/activities/:id', (req, res) => {
+    const actId = req.params.id;
+
+    activitySchema
+        .findById(actId)
+        .then((data) => res.json(data))
+        .catch((error)=> res.json({message:error}))
+});
+
 //create a activity
 router.post('/activities', async (req, res) => {
     console.log("llego al endpoint");
