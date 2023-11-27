@@ -19,6 +19,7 @@ export class SelectGuestNicknameComponent {
       (params: Params) => {
         this.id = params['sessionId'];
       });
+
   }
 
   enterNickname(nickname: string){

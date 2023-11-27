@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class GuestWaitComponent {
 
+  nickname?: string | null;
+
+  ngOnInit(): void {
+    this.nickname = localStorage.getItem('nickname');
+  }
 }
