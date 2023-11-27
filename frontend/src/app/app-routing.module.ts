@@ -20,7 +20,7 @@ const routes: Routes = [
   { path: 'create-proposal', component: CreateProposalComponent },
   { path: 'startedSession', component: SessionComponent},
   { path: 'proposal-lobby/:proposalId', component: ProposalLobbyComponent},
-  { path: 'ranking-proposal', component: RankingProposalComponent}
+  { path: 'ranking-proposal/:sessionId', component: RankingProposalComponent},
 ];
 
 @NgModule({

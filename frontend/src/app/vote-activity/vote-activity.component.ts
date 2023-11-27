@@ -7,6 +7,7 @@ import { SocketService } from '../socket.service';
   templateUrl: './vote-activity.component.html',
   styleUrls: ['./vote-activity.component.css']
 })
+
 export class VoteActivityComponent {
   currentActivity:Activity = {title:'Esperando actividad', imgPath:''};
   voto: boolean = false;
