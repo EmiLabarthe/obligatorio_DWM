@@ -9,7 +9,7 @@ const authUtils=require('../middleware/jwtAuth');
      
 
 //get all activities
-router.get('/activities', (req, res) => {
+router.get('/activities',authUtils.verifyToken, (req, res) => {
     
     activitySchema
         .find()
@@ -17,7 +17,7 @@ router.get('/activities', (req, res) => {
         .catch((error)=> res.json({message:error}))
 });
 
-router.get('/activities/:id', (req, res) => {
+router.get('/activities/:id',authUtils.verifyToken, (req, res) => {
     const actId = req.params.id;
 
     activitySchema
@@ -27,7 +27,7 @@ router.get('/activities/:id', (req, res) => {
 });
 
 //create a activity
-router.post('/activities', async (req, res) => {
+router.post('/activities',authUtils.verifyToken, async (req, res) => {
     console.log("llego al endpoint");
     try {
 
