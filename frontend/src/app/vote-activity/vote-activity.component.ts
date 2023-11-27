@@ -23,7 +23,7 @@ export class VoteActivityComponent {
   {
     console.log("Se votó: "+this.nickname+" en"+this.sessionId)
     this.voto = false;
-    var value = this.sessionService.postReaction(this.sessionId, this.nickname, this.currentActivity.title, reaction)
+    this.sessionService.postReaction(this.sessionId, this.nickname, this.currentActivity.title, reaction).subscribe();
   }
   ngOnInit() {
     var nick =  localStorage.getItem('nickname');
