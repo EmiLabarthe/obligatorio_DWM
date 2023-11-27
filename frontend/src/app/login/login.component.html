@@ -25,13 +25,13 @@
         <div class="title">
             <h2>Sign as guest</h2>
         </div>
-        <form method="post">
+        <form method="post" (ngSubmit)="joinSession()">
             <div class="input-container">
                 <label for="session">Session code:</label>
-                <input type="text" name="session" id="session" placeholder="Session code" required>
+                <input type="text" name="session" id="session" placeholder="Session code" [(ngModel)]="sessionCode" required>
             </div>
             <div class="btn-container">
-                <input type="submit" class="btn btn-primary btn-md go" value="Join">
+                <input type="submit" class="btn btn-primary btn-md go" value="Join" (click)="joinSession()">
             </div>
         </form>
     </div>
