@@ -10,7 +10,11 @@ import { Admin } from '../admin';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  constructor(private adminService: AdminServiceService, private router: Router) { }
+
+
+  constructor(private adminService: AdminServiceService, private router: Router) { 
+    
+  }
   admin: Admin = {
     name: "",
     password: ""
@@ -34,8 +38,16 @@ export class LoginComponent {
         // Handle the error (show a message to the user, etc.)
       }
     );
+
+    
   }
 
+  sessionCode?: string
+
+  joinSession(){
+    
+    this.router.navigate([`/select-nickname/${this.sessionCode}` ]);
+  }
 
 
 }

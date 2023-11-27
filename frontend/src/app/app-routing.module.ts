@@ -12,8 +12,8 @@ import { RankingProposalComponent } from './ranking-proposal/ranking-proposal.co
 const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'login', component: LoginComponent},
-  { path: 'select-nickname', component: SelectGuestNicknameComponent },
-  { path: 'guest-waiting', component: GuestWaitComponent},
+  { path: 'select-nickname/:sessionId', component: SelectGuestNicknameComponent },
+  { path: 'guest-waiting/:sessionId', component: GuestWaitComponent},
   { path: 'vote-activity/:sessionId', component: VoteActivityComponent},
   { path: 'select-proposal', component: SelectProposalComponent },
   { path: 'create-proposal', component: CreateProposalComponent },
