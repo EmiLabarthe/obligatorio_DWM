@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { Activity } from '../activity';
 import { SocketService } from '../socket.service';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-vote-activity',
@@ -11,21 +13,31 @@ import { SocketService } from '../socket.service';
 export class VoteActivityComponent {
   currentActivity:Activity = {title:'Esperando actividad', imgPath:''};
   voto: boolean = false;
-  constructor(private socketService: SocketService) {}
+  sessionId: string = "";
+  constructor(private socketService: SocketService, private router: Router, private route: ActivatedRoute) {}
   activityPosition = -1;
   nickname = localStorage.getItem('nickname');
   
   onClick(reaction: number)
   {
     this.voto = false;
-    this.nickname;
+    
   }
   ngOnInit() {
-    //chart.js
-    this.socketService.getNewMessage().subscribe((activity:Activity) => {
-      this.currentActivity = activity;
-      this.voto = activity.title != "Terminó el juego" && activity.title != "Esperando actividad";
-      this.activityPosition += 1;
+    // Get parameter from route
+    this.route.params.subscribe(params => {
+      // Accessing individual parameter values
+      this.sessionId = params['sessionId']; // Change 'parameterName' to your actual parameter name      
+    });
+
+    this.socketService.getNewMessage().subscribe((message) => {
+    this.currentActivity = message.activity;
+    this.activityPosition = message.position;
+    this.voto = this.activityPosition !=-1;
+    if(this.currentActivity.title == "Terminó el juego" && this.activityPosition == -1)
+    {
+      this.router.navigate([`/ranking-proposal/${this.sessionId}`])
+    }
     })
   }
 }

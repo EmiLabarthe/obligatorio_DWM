@@ -76,7 +76,23 @@ router.get('/sessions/:id', (req, res) => {
         .catch((error) => res.status(500).json({ message: error }));
 })
 
-
-
+// post a reaction
+router.post('/sessions/:id',async (req, res) => {
+    try{
+        const activityId = req.body._id;
+        const sessionId = req.params.id;
+        const user = req.body.user;
+        const sessionVote = await sessionSchema.updateOne({ code:sessionId, "reactionList.idAct": activityId},
+        { $addToSet: { 'reactionList.$.votes': user}  });
+        if (sessionVote.modifiedCount > 0) {
+            res.status(200).json({ message: 'User added to reactionList successfully' });
+        } else {
+            res.status(404).json({ message: 'Activity ID not found or user already exists in the list' });
+        }
+    }catch(error){
+        console.error(error);
+        res.status(500).json({ mensaje: 'Error en el servidor al crear la sesión' });
+    }
+})
 
 module.exports = router;
