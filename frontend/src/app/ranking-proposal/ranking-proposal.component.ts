@@ -13,6 +13,10 @@ import { Activity } from '../activity';
 export class RankingProposalComponent {
   
   ranking? : any;
+  activityFirst? : Activity;
+  activitySecond? : Activity;
+  activityThird? : Activity;
+
   constructor(private route: ActivatedRoute,private activityService: ActivityServiceService, private sessionService: SessionService, private router: Router){
   }
 
@@ -23,6 +27,22 @@ export class RankingProposalComponent {
         this.sessionService.getRanking(id).subscribe(
           (res:any) => {
             this.ranking = res;
+
+            this.activityService.getActivity(this.ranking[0].idAct).subscribe(
+              (res) => {
+                this.activityFirst = res
+              }
+            )
+            this.activityService.getActivity(this.ranking[1].idAct).subscribe(
+              (res) => {
+                this.activitySecond = res
+              }
+            )
+            this.activityService.getActivity(this.ranking[2].idAct).subscribe(
+              (res) => {
+                this.activityThird = res
+              }
+            )
           }
         )
       });
