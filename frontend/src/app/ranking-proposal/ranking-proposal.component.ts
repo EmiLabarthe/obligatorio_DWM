@@ -28,21 +28,7 @@ export class RankingProposalComponent {
           (res:any) => {
             this.ranking = res;
 
-            this.activityService.getActivity(this.ranking[0].idAct).subscribe(
-              (res) => {
-                this.activityFirst = res
-              }
-            )
-            this.activityService.getActivity(this.ranking[1].idAct).subscribe(
-              (res) => {
-                this.activitySecond = res
-              }
-            )
-            this.activityService.getActivity(this.ranking[2].idAct).subscribe(
-              (res) => {
-                this.activityThird = res
-              }
-            )
+            
           }
         )
       });
